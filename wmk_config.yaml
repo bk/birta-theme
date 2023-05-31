@@ -1,0 +1,23 @@
+site:
+    name: Birta
+    description: Vefur til prufu
+    author: Baldur Kristinsson
+    leading_path: ''
+    base_url: ''
+    avec_theme: default
+    no_sitemap: false
+    auto_title_h1: true
+    tagline: Verði ljós
+    extra_css: []
+    extra_javascript: []
+    favicon: 'img/favicon.ico'
+    lang: 'is'
+
+# A nav is a list of single-key dicts whose values are either a link or
+# a list of single-key dicts. The key is the title/label in both cases.
+nav: []
+
+# The Markdown extension settings are of course merely a suggestion.
+markdown_extensions:
+    - extra
+    - sane_lists

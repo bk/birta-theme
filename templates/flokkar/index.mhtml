@@ -1,0 +1,68 @@
+<%inherit file="../base.mhtml"/>
+<%! main_class = '' %>
+<%block name="htmltitle"><title>${ 'Flokkur - ' + CURRENT_TAG if CURRENT_TAG else 'Flokkar' }</title></%block>
+
+<%block name="content">
+  <section role="main" class="tagpage">
+    % if CHUNK:
+
+      <hgroup>
+        <h1>${ CURRENT_TAG  }</h1>
+        <p>Listi yfir síður í þessum flokki</p>
+      </hgroup>
+
+      <ul class="tagged">
+        % for it in sorted(CHUNK, key=lambda x: x['data']['page'].title):
+          <li><a href="${ it['url'] | url }">${it['data']['page'].title}</a></li>
+        % endfor
+      </ul>
+
+      <p><a href="${ 'flokkar/' | url }">Aftur í flokkalista</a></p>
+
+    % else:
+
+      <%
+        all_tags = set()
+        tagcount = {}
+        for it in MDCONTENT:
+            if it['data']['page'].tags:
+                for tag in it['data']['page'].tags:
+                    if not tag.lower() in tagcount:
+                        tagcount[tag.lower()] = 1
+                    else:
+                        tagcount[tag.lower()] += 1
+                    all_tags.add(tag)
+        # we prefer the upper case for display
+        all_tags_list = sorted([_ for _ in all_tags])
+        tags_ics = {}
+      %>
+      <hgroup>
+        <h1>Flokkar</h1>
+        <p>Listi yfir alla flokka sem einhverjar síður eru í</p>
+      </hgroup>
+      % if all_tags_list:
+        <ul class="tags">
+          % for tag in all_tags_list:
+            % if not tag in tags_ics:
+              <% taglink = 'flokkar/' + slugify(tag) %>
+              <li><a href="${ taglink | url }/">${ tag }</a> (${ tagcount[tag.lower()] } síður)</li>
+            % endif
+            <% tags_ics[tag.lower()] = tag %>
+          % endfor
+        </ul>
+        <%
+          for tag in tags_ics:
+              tagged = MDCONTENT.has_tag([tag])
+              if len(tagged):
+                  dest = '/flokkar/' + slugify(tag) + '/index.html'
+                  tagged.write_to(dest, context, {'CURRENT_TAG': tags_ics[tag]})
+        %>
+      % else:
+        <div class="admonition warning">
+          <p class="admonition-title">Engir flokkar fundust</p>
+          <p>Síðurnar á þessu vefsvæði hafa enn ekki verið flokkaðar.</p>
+        </div>
+      % endif
+    % endif
+  </section>
+</%block>

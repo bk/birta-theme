@@ -1,0 +1,156 @@
+<%!
+description = ''
+title = 'Forsíða'
+header_class = 'reverse-theme'
+footer_class = 'reverse-theme'
+nav_class = ''
+body_class = ''
+main_class = 'items-fixed items-max-md'
+%>\
+<%namespace file="comp/utils.mc" import="nav_sub, tags, maybe_auto_title" />\
+<!DOCTYPE html>
+<html lang="${ site.lang or 'en' }">
+    <head>
+      <%block name="site_meta">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <%block name="meta_description">
+        % if page.description or self.attr.description:
+          <meta name="description" content="${ page.description or self.attr.description }">
+        % endif
+        </%block>
+        <%block name="meta_image"></%block>
+        % if site.author:
+          <meta name="author" content="${ site.author }">
+        % endif
+        % if site.favicon:
+          <link rel="shortcut icon" href="${ site.favicon | url }">
+        % else:
+          <link rel="shortcut icon" href="${ 'img/favicon.ico' | url }">
+        % endif
+      </%block>
+
+      <%block name="htmltitle">
+        <title>${ page.title or self.attr.title }</title>
+      </%block>
+
+      <%block name="styles">
+        <link href="${ 'css/avec/avec.min.css' | url }" rel="stylesheet">
+        % if site.avec_theme and site.avec_theme in ('default', 'one', 'gruvbox', 'pico', 'plain', 'selenized'):
+        <link href="${ 'css/avec/avec.%s-theme.css' % site.avec_theme |url }" rel="stylesheet">
+        % endif
+        <link href="${ 'css/birta.css' | url }" rel="stylesheet">
+        % for path in (site.extra_css or []):
+        <link href="${ path | url }" rel="stylesheet">
+        % endfor
+        % for path in (page.extra_css or []):
+        <link href="${ path | url }" rel="stylesheet">
+        % endfor
+      </%block>
+
+      <%block name="libs"></%block>
+
+      <%block name="analytics">
+        ### TBD
+      </%block>
+
+      <%block name="extrahead"></%block>
+    </head>
+
+    <body class="light-theme ${ page.body_class if page.body_class else self.attr.body_class }">
+    <%block name="header">
+      <header class="${ self.attr.header_class }">
+        <div class="container items-fixed">
+        <nav class="${ self.attr.nav_class }">
+          <%block name="header_brand">
+            <a href="${ '/' | url }" class="text brand larger">
+              <strong>${ site.name }</strong>
+            </a>
+          </%block>
+          <%block name="nav_menu">
+            <!-- Desktop menu -->
+            % if len(nav) > 1:
+              <ul class="seen-011 hidden-sm mr-a">
+                % for nav_item in nav:
+                  % if nav_item.is_link and nav_item.is_homepage and nav.homepage:
+                    ## No need to repeat the Home link since we
+                    ## have it already in navbar-brand above.
+                    <% continue %>
+                  % elif nav_item.children:
+                    <li><details role="dropdown" class="${ 'active' if nav_item.contains_url(SELF_URL, url, best=False) else '' }">
+                      <summary>${ nav_item.title }</summary>
+                      <ul>
+                        % for it in nav_item:
+                          ## Note: possibly nested
+                          ${ nav_sub(it, SELF_URL) }
+                        % endfor
+                      </ul>
+                    </details></li>
+                  % else:
+                    <li><a href="${ nav_item.url | url }" class="${ ' active' if nav_item.contains_url(SELF_URL, url, best=True) else '' }">${ nav_item.title }</a></li>
+                  % endif
+                % endfor
+              </ul>
+            % endif
+            <!-- Mobile menu -->
+            <div class="seen-110 hidden-md">
+              <input id="main-menu" type="checkbox" class="show-menu">
+              <label for="main-menu" class="burger pr-1">
+                <span class="menu-icon"></span>
+              </label>
+              <div class="menu has-close">
+                <label for="main-menu" class="close">&times;</label>
+                <h4>Valmynd</h4>
+                <div class="menu-inner">
+                  <ul class="links">
+                    % if len(nav) > 1:
+                      % for nav_item in nav:
+                        ${ nav_sub(nav_item, SELF_URL) }
+                      % endfor
+                    % endif
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </%block>
+        </nav>
+        </div>
+      </header>
+    </%block>
+    <main class="${ page.main_class or self.attr.main_class }">
+      <%block name="content">
+        % if page:
+          <section role="main">
+            ${ maybe_auto_title() }
+            ${ CONTENT }
+            ${ tags() }
+          </section>
+        % else:
+          ${ next.body() }
+        % endif
+      </%block>
+    </main>
+    <%block name="footer">
+      <footer class="${ self.attr.footer_class }">
+        % if site.tagline:
+          <p class="tagline">${ site.tagline }</p>
+        % endif
+        % if site.copyright:
+          <p class="copyright">&copy; ${ site.copyright }</p>
+        % endif
+      </footer>
+    </%block>
+    <%block name="scripts">
+    <script>
+      var base_url = "${ '/' | url }";
+    </script>
+    <script src="${ 'js/birta.js' | url }" defer></script>
+    % for path in site.extra_javascript:
+      <script src="${ path | url }" defer></script>
+    % endfor
+    % for path in page.extra_javascript:
+      <script src="${ path | url }" defer></script>
+    % endfor
+    </%block>
+  </body>
+</html>

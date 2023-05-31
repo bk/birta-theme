@@ -1,0 +1,16 @@
+<%inherit file="./base.mhtml" />
+<%!
+main_class = ''
+title = "Frontpage"
+%>
+
+<%block name="content">
+  <section role="main">
+    <hgroup>
+      <h1 class="title">Forsíða</h1>
+      <p class="subtitle">Þrautalendingarforsíða – ef hún sést vantar efni</p>
+    </hgroup>
+    <p>Best er að stofna <code>index.md</code> síðu eða álíka. Þessi síða ætti aðeins
+      að sjást ef efni vantar.</p>
+  </section>
+</%block>

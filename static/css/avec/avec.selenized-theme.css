@@ -1,0 +1,122 @@
+/* AvecCSS v1.0 - Selenized theme */
+:root, .light-theme {
+  --bg: #fbf3db;
+  --card-bg: #fff9e6;
+  --accent-bg: #e9e4d0;
+  --contrast-bg: #cfcebe;
+  --text: #3a4d53;
+  --text-light: #53676d;
+  --text-vivid: black;
+  --text-heading: #3a4d53;
+  --border: #909995;
+  --accent: #006dce;
+  --code: #bc5819;
+  --preformatted: #3a4d53;
+  --marked: #f5e595;
+  --disabled: #efefef;
+  --box-shadow: 0.0145rem 0.029rem 0.174rem rgba(26, 45, 51, 0.01698), 0.0335rem 0.067rem 0.402rem rgba(26, 45, 51, 0.024), 0.0625rem 0.125rem 0.75rem rgba(26, 45, 51, 0.03), 0.1125rem 0.225rem 1.35rem rgba(26, 45, 51, 0.036), 0.2085rem 0.417rem 2.502rem rgba(26, 45, 51, 0.04302), 0.5rem 1rem 6rem rgba(26, 45, 51, 0.06), 0 0 0 0.0625rem rgba(26, 45, 51, 0.015);
+  --info: mediumblue;
+  --warning: darkorange;
+  --error: firebrick;
+  --success: forestgreen;
+  --button-text: var(--bg);
+  --mark-text: var(--text);
+  --code-bg: var(--accent-bg); }
+
+.dark-theme, .reverse-theme, .light-theme .reverse-theme {
+  --bg: #103c48;
+  --card-bg: #002c38;
+  --accent-bg: #174956;
+  --contrast-bg: #325b66;
+  --text: #cad8d9;
+  --text-light: #adbcbc;
+  --text-vivid: white;
+  --text-heading: #cad8d9;
+  --border: #72898f;
+  --accent: #ebc13d;
+  --code: #dbb32d;
+  --preformatted: #cad8d9;
+  --marked: #fa5750;
+  --disabled: #000;
+  --box-shadow: 0.0145rem 0.029rem 0.174rem rgba(23, 0, 44, 0.01698), 0.0335rem 0.067rem 0.402rem rgba(23, 0, 44, 0.024), 0.0625rem 0.125rem 0.75rem rgba(23, 0, 44, 0.03), 0.1125rem 0.225rem 1.35rem rgba(23, 0, 44, 0.036), 0.2085rem 0.417rem 2.502rem rgba(23, 0, 44, 0.04302), 0.5rem 1rem 6rem rgba(23, 0, 44, 0.06), 0 0 0 0.0625rem rgba(23, 0, 44, 0.015);
+  --info: lightskyblue;
+  --warning: gold;
+  --error: orangered;
+  --success: springgreen;
+  --button-text: var(--bg);
+  --mark-text: var(--text);
+  --code-bg: var(--accent-bg); }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #103c48;
+    --card-bg: #002c38;
+    --accent-bg: #174956;
+    --contrast-bg: #325b66;
+    --text: #cad8d9;
+    --text-light: #adbcbc;
+    --text-vivid: white;
+    --text-heading: #cad8d9;
+    --border: #72898f;
+    --accent: #ebc13d;
+    --code: #dbb32d;
+    --preformatted: #cad8d9;
+    --disabled: #000;
+    --box-shadow: 0.0145rem 0.029rem 0.174rem rgba(23, 0, 44, 0.01698), 0.0335rem 0.067rem 0.402rem rgba(23, 0, 44, 0.024), 0.0625rem 0.125rem 0.75rem rgba(23, 0, 44, 0.03), 0.1125rem 0.225rem 1.35rem rgba(23, 0, 44, 0.036), 0.2085rem 0.417rem 2.502rem rgba(23, 0, 44, 0.04302), 0.5rem 1rem 6rem rgba(23, 0, 44, 0.06), 0 0 0 0.0625rem rgba(23, 0, 44, 0.015);
+    --info: lightskyblue;
+    --warning: gold;
+    --error: orangered;
+    --success: springgreen;
+    --button-text: var(--bg);
+    --mark-text: var(--text);
+    --code-bg: var(--accent-bg); }
+  .reverse-theme {
+    --bg: #fbf3db;
+    --card-bg: #fff9e6;
+    --accent-bg: #e9e4d0;
+    --contrast-bg: #cfcebe;
+    --text: #3a4d53;
+    --text-light: #53676d;
+    --text-vivid: black;
+    --text-heading: #3a4d53;
+    --border: #909995;
+    --accent: #006dce;
+    --code: #bc5819;
+    --preformatted: #3a4d53;
+    --marked: #f5e595;
+    --disabled: #efefef;
+    --box-shadow: 0.0145rem 0.029rem 0.174rem rgba(26, 45, 51, 0.01698), 0.0335rem 0.067rem 0.402rem rgba(26, 45, 51, 0.024), 0.0625rem 0.125rem 0.75rem rgba(26, 45, 51, 0.03), 0.1125rem 0.225rem 1.35rem rgba(26, 45, 51, 0.036), 0.2085rem 0.417rem 2.502rem rgba(26, 45, 51, 0.04302), 0.5rem 1rem 6rem rgba(26, 45, 51, 0.06), 0 0 0 0.0625rem rgba(26, 45, 51, 0.015);
+    --info: mediumblue;
+    --warning: darkorange;
+    --error: firebrick;
+    --success: forestgreen;
+    --button-text: var(--bg);
+    --mark-text: var(--text);
+    --code-bg: var(--accent-bg); } }
+
+.dark-theme .reverse-theme {
+  --bg: #fbf3db;
+  --card-bg: #fff9e6;
+  --accent-bg: #e9e4d0;
+  --contrast-bg: #cfcebe;
+  --text: #3a4d53;
+  --text-light: #53676d;
+  --text-vivid: black;
+  --text-heading: #3a4d53;
+  --border: #909995;
+  --accent: #006dce;
+  --code: #bc5819;
+  --preformatted: #3a4d53;
+  --marked: #f5e595;
+  --disabled: #efefef;
+  --box-shadow: 0.0145rem 0.029rem 0.174rem rgba(26, 45, 51, 0.01698), 0.0335rem 0.067rem 0.402rem rgba(26, 45, 51, 0.024), 0.0625rem 0.125rem 0.75rem rgba(26, 45, 51, 0.03), 0.1125rem 0.225rem 1.35rem rgba(26, 45, 51, 0.036), 0.2085rem 0.417rem 2.502rem rgba(26, 45, 51, 0.04302), 0.5rem 1rem 6rem rgba(26, 45, 51, 0.06), 0 0 0 0.0625rem rgba(26, 45, 51, 0.015);
+  --info: mediumblue;
+  --warning: darkorange;
+  --error: firebrick;
+  --success: forestgreen;
+  --button-text: var(--bg);
+  --mark-text: var(--text);
+  --code-bg: var(--accent-bg); }
+
+:root {
+  --main-font: Seravek, Gill Sans Nova, Ubuntu, Calibri, DejaVu Sans, source-sans-pro, sans-serif; }

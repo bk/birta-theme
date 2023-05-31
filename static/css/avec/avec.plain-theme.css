@@ -1,0 +1,122 @@
+/* AvecCSS v1.0 - Plain theme */
+:root, .light-theme {
+  --bg: #fff;
+  --card-bg: #eee;
+  --accent-bg: #f5f5f5;
+  --contrast-bg: #e5e5e5;
+  --text: #1e2740;
+  --text-light: #716f8a;
+  --text-vivid: black;
+  --text-heading: #1e2740;
+  --border: #c3c7cf;
+  --accent: #1e2740;
+  --code: #1e2740;
+  --preformatted: #3e4780;
+  --marked: #f5e595;
+  --disabled: #efefef;
+  --box-shadow: 0.0145rem 0.029rem 0.174rem rgba(27, 40, 50, 0.01698), 0.0335rem 0.067rem 0.402rem rgba(27, 40, 50, 0.024), 0.0625rem 0.125rem 0.75rem rgba(27, 40, 50, 0.03), 0.1125rem 0.225rem 1.35rem rgba(27, 40, 50, 0.036), 0.2085rem 0.417rem 2.502rem rgba(27, 40, 50, 0.04302), 0.5rem 1rem 6rem rgba(27, 40, 50, 0.06), 0 0 0 0.0625rem rgba(27, 40, 50, 0.015);
+  --info: mediumblue;
+  --warning: darkorange;
+  --error: firebrick;
+  --success: forestgreen;
+  --button-text: var(--bg);
+  --mark-text: var(--text);
+  --code-bg: var(--accent-bg); }
+
+.dark-theme, .reverse-theme, .light-theme .reverse-theme {
+  --bg: #111016;
+  --card-bg: #000;
+  --accent-bg: #191821;
+  --contrast-bg: #222023;
+  --text: #9e9e9e;
+  --text-light: #888;
+  --text-vivid: white;
+  --text-heading: #f0f0f0;
+  --border: #676669;
+  --accent: #f0f0f0;
+  --code: #939393;
+  --preformatted: #ababab;
+  --marked: #039;
+  --disabled: #111;
+  --box-shadow: 0.0145rem 0.029rem 0.174rem rgba(0, 0, 0, 0.01698), 0.0335rem 0.067rem 0.402rem rgba(0, 0, 0, 0.024), 0.0625rem 0.125rem 0.75rem rgba(0, 0, 0, 0.03), 0.1125rem 0.225rem 1.35rem rgba(0, 0, 0, 0.036), 0.2085rem 0.417rem 2.502rem rgba(0, 0, 0, 0.04302), 0.5rem 1rem 6rem rgba(0, 0, 0, 0.06), 0 0 0 0.0625rem rgba(0, 0, 0, 0.015);
+  --info: lightskyblue;
+  --warning: gold;
+  --error: orangered;
+  --success: springgreen;
+  --button-text: var(--bg);
+  --mark-text: var(--text);
+  --code-bg: var(--accent-bg); }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111016;
+    --card-bg: #000;
+    --accent-bg: #191821;
+    --contrast-bg: #222023;
+    --text: #9e9e9e;
+    --text-light: #888;
+    --text-vivid: white;
+    --text-heading: #f0f0f0;
+    --border: #676669;
+    --accent: #f0f0f0;
+    --code: #939393;
+    --preformatted: #ababab;
+    --disabled: #111;
+    --box-shadow: 0.0145rem 0.029rem 0.174rem rgba(0, 0, 0, 0.01698), 0.0335rem 0.067rem 0.402rem rgba(0, 0, 0, 0.024), 0.0625rem 0.125rem 0.75rem rgba(0, 0, 0, 0.03), 0.1125rem 0.225rem 1.35rem rgba(0, 0, 0, 0.036), 0.2085rem 0.417rem 2.502rem rgba(0, 0, 0, 0.04302), 0.5rem 1rem 6rem rgba(0, 0, 0, 0.06), 0 0 0 0.0625rem rgba(0, 0, 0, 0.015);
+    --info: lightskyblue;
+    --warning: gold;
+    --error: orangered;
+    --success: springgreen;
+    --button-text: var(--bg);
+    --mark-text: var(--text);
+    --code-bg: var(--accent-bg); }
+  .reverse-theme {
+    --bg: #fff;
+    --card-bg: #eee;
+    --accent-bg: #f5f5f5;
+    --contrast-bg: #e5e5e5;
+    --text: #1e2740;
+    --text-light: #716f8a;
+    --text-vivid: black;
+    --text-heading: #1e2740;
+    --border: #c3c7cf;
+    --accent: #1e2740;
+    --code: #1e2740;
+    --preformatted: #3e4780;
+    --marked: #f5e595;
+    --disabled: #efefef;
+    --box-shadow: 0.0145rem 0.029rem 0.174rem rgba(27, 40, 50, 0.01698), 0.0335rem 0.067rem 0.402rem rgba(27, 40, 50, 0.024), 0.0625rem 0.125rem 0.75rem rgba(27, 40, 50, 0.03), 0.1125rem 0.225rem 1.35rem rgba(27, 40, 50, 0.036), 0.2085rem 0.417rem 2.502rem rgba(27, 40, 50, 0.04302), 0.5rem 1rem 6rem rgba(27, 40, 50, 0.06), 0 0 0 0.0625rem rgba(27, 40, 50, 0.015);
+    --info: mediumblue;
+    --warning: darkorange;
+    --error: firebrick;
+    --success: forestgreen;
+    --button-text: var(--bg);
+    --mark-text: var(--text);
+    --code-bg: var(--accent-bg); } }
+
+.dark-theme .reverse-theme {
+  --bg: #fff;
+  --card-bg: #eee;
+  --accent-bg: #f5f5f5;
+  --contrast-bg: #e5e5e5;
+  --text: #1e2740;
+  --text-light: #716f8a;
+  --text-vivid: black;
+  --text-heading: #1e2740;
+  --border: #c3c7cf;
+  --accent: #1e2740;
+  --code: #1e2740;
+  --preformatted: #3e4780;
+  --marked: #f5e595;
+  --disabled: #efefef;
+  --box-shadow: 0.0145rem 0.029rem 0.174rem rgba(27, 40, 50, 0.01698), 0.0335rem 0.067rem 0.402rem rgba(27, 40, 50, 0.024), 0.0625rem 0.125rem 0.75rem rgba(27, 40, 50, 0.03), 0.1125rem 0.225rem 1.35rem rgba(27, 40, 50, 0.036), 0.2085rem 0.417rem 2.502rem rgba(27, 40, 50, 0.04302), 0.5rem 1rem 6rem rgba(27, 40, 50, 0.06), 0 0 0 0.0625rem rgba(27, 40, 50, 0.015);
+  --info: mediumblue;
+  --warning: darkorange;
+  --error: firebrick;
+  --success: forestgreen;
+  --button-text: var(--bg);
+  --mark-text: var(--text);
+  --code-bg: var(--accent-bg); }
+
+:root {
+  --main-font: Seravek, Gill Sans Nova, Ubuntu, Calibri, DejaVu Sans, source-sans-pro, sans-serif; }

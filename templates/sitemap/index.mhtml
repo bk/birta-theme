@@ -1,0 +1,81 @@
+<%inherit file="../base.mhtml" />
+<%!
+main_class = ''
+title = 'Veftré'
+%>
+
+<%block name="content">
+  <section role="main">
+    <h1 class="title">Veftré</h1>
+    <p class="mb-4">Síðutréð á þessu vefsvæði</p>
+    % if site.no_sitemap:
+      <div class="admonition admonition-error">
+        <p class="admonition-title">Villa</p>
+        <p>Slökkt hefur verið á veftrénu á þessari síðu.</p>
+      </div>
+    % else:
+      <%
+      pagelist = []
+      have_jumps = 0
+      jump_pages = []
+      for it in MDCONTENT:
+          pg = it['data']['page']
+          if not pg.do_not_render:
+              page_url = url(it['url'])
+              stripped_url = cleanurl(it['url'])
+              urlparts = [p for p in stripped_url.strip('/').split('/') if p != '']
+              pagelist.append({
+                  'title': pg.title,
+                  'url': page_url,
+                  'urlparts': urlparts,
+                  'level': len(urlparts),
+              })
+      pagelist.sort(key=lambda x: x['url'])
+      frontpage = None
+      if pagelist and pagelist[0]['level'] == 0:
+          frontpage = pagelist.pop(0)
+      cur_level = 0
+      maxi = len(pagelist) - 1
+      %>
+      % if frontpage:
+        <p><strong>Forsíða:</strong> <a href="${ frontpage['url'] }">${ frontpage['title'] }</a></p>
+      % else:
+        <p><strong><a href="${ '/' | url }">Sjálfgefin forsíða</a></strong>. Efni vantar og því notuð sjálfgefin síða.</p>
+      % endif
+      <p>Aðrar síður:</p>
+      <ul>
+      % for i, p in enumerate(pagelist):
+        <%
+          if (p['level'] - cur_level) > 1:
+              have_jumps += 1
+        %>
+        % if p['level'] <= cur_level:
+          </li>
+        % endif
+        % if p['level'] < cur_level:
+          ${ '</ul>' * (cur_level - p['level']) }
+        % endif
+        <li><a href="${ p['url'] }">${ p['title'] }</a>
+          % if p['level'] == 0 and p['title'] != 'Forsíða':
+            (forsíða)
+          % endif
+        <% cur_level = p['level'] %>
+        % if i < maxi and pagelist[i+1]['level'] > cur_level:
+          ${ '<ul>' * (pagelist[i+1]['level'] - cur_level) }
+        % endif
+      % endfor
+      </li>
+      % if cur_level:
+        ${ '</ul>' * cur_level }
+      % endif
+      </ul>
+    % endif
+    <p><strong>Kemur ekki fram hér:</strong> Þessi síða ásamt <a href="/flokkar/">flokkasíðum</a>.</p>
+    % if have_jumps:
+      <div class="admonition admonition-note">
+        <p class="admonition-title">Athugið</p>
+        <p>Ofangreint síðutré er nokkuð óreglulegt þar sem grunnskrár vantaði í einhverjar undirmöppur.</p>
+      </div>
+    % endif
+  </section>
+</%block>

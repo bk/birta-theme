@@ -1,0 +1,119 @@
+/* AvecCSS v1.0 - default theme */
+:root, .light-theme {
+  --bg: #f5f5f5;
+  --card-bg: #ffffff;
+  --accent-bg: #e6e9ef;
+  --contrast-bg: #c6d9df;
+  --text: #212121;
+  --text-light: #585858;
+  --text-vivid: black;
+  --text-heading: #212121;
+  --border: #cccfd6;
+  --accent: #0d47a1;
+  --code: #771122;
+  --preformatted: #444;
+  --marked: #f5e595;
+  --disabled: #efefef;
+  --box-shadow: 0.0145rem 0.029rem 0.174rem rgba(27, 40, 50, 0.01698), 0.0335rem 0.067rem 0.402rem rgba(27, 40, 50, 0.024), 0.0625rem 0.125rem 0.75rem rgba(27, 40, 50, 0.03), 0.1125rem 0.225rem 1.35rem rgba(27, 40, 50, 0.036), 0.2085rem 0.417rem 2.502rem rgba(27, 40, 50, 0.04302), 0.5rem 1rem 6rem rgba(27, 40, 50, 0.06), 0 0 0 0.0625rem rgba(27, 40, 50, 0.015);
+  --info: mediumblue;
+  --warning: darkorange;
+  --error: firebrick;
+  --success: forestgreen;
+  --button-text: var(--bg);
+  --mark-text: var(--text);
+  --code-bg: var(--accent-bg); }
+
+.dark-theme, .reverse-theme, .light-theme .reverse-theme {
+  --bg: #212121;
+  --card-bg: #2f3133;
+  --accent-bg: #2b2b2b;
+  --contrast-bg: #353839;
+  --text: #dcdcdc;
+  --text-light: #ababab;
+  --text-vivid: white;
+  --text-heading: #dcdcdc;
+  --border: #666;
+  --accent: #ffb300;
+  --code: #f06292;
+  --preformatted: #ccc;
+  --marked: #039;
+  --disabled: #111;
+  --box-shadow: 0.0145rem 0.029rem 0.174rem rgba(0, 0, 0, 0.01698), 0.0335rem 0.067rem 0.402rem rgba(0, 0, 0, 0.024), 0.0625rem 0.125rem 0.75rem rgba(0, 0, 0, 0.03), 0.1125rem 0.225rem 1.35rem rgba(0, 0, 0, 0.036), 0.2085rem 0.417rem 2.502rem rgba(0, 0, 0, 0.04302), 0.5rem 1rem 6rem rgba(0, 0, 0, 0.06), 0 0 0 0.0625rem rgba(0, 0, 0, 0.015);
+  --info: lightskyblue;
+  --warning: gold;
+  --error: orangered;
+  --success: springgreen;
+  --button-text: var(--bg);
+  --mark-text: var(--text);
+  --code-bg: var(--accent-bg); }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #212121;
+    --card-bg: #2f3133;
+    --accent-bg: #2b2b2b;
+    --contrast-bg: #353839;
+    --text: #dcdcdc;
+    --text-light: #ababab;
+    --text-vivid: white;
+    --text-heading: #dcdcdc;
+    --border: #666;
+    --accent: #ffb300;
+    --code: #f06292;
+    --preformatted: #ccc;
+    --disabled: #111;
+    --box-shadow: 0.0145rem 0.029rem 0.174rem rgba(0, 0, 0, 0.01698), 0.0335rem 0.067rem 0.402rem rgba(0, 0, 0, 0.024), 0.0625rem 0.125rem 0.75rem rgba(0, 0, 0, 0.03), 0.1125rem 0.225rem 1.35rem rgba(0, 0, 0, 0.036), 0.2085rem 0.417rem 2.502rem rgba(0, 0, 0, 0.04302), 0.5rem 1rem 6rem rgba(0, 0, 0, 0.06), 0 0 0 0.0625rem rgba(0, 0, 0, 0.015);
+    --info: lightskyblue;
+    --warning: gold;
+    --error: orangered;
+    --success: springgreen;
+    --button-text: var(--bg);
+    --mark-text: var(--text);
+    --code-bg: var(--accent-bg); }
+  .reverse-theme {
+    --bg: #f5f5f5;
+    --card-bg: #ffffff;
+    --accent-bg: #e6e9ef;
+    --contrast-bg: #c6d9df;
+    --text: #212121;
+    --text-light: #585858;
+    --text-vivid: black;
+    --text-heading: #212121;
+    --border: #cccfd6;
+    --accent: #0d47a1;
+    --code: #771122;
+    --preformatted: #444;
+    --marked: #f5e595;
+    --disabled: #efefef;
+    --box-shadow: 0.0145rem 0.029rem 0.174rem rgba(27, 40, 50, 0.01698), 0.0335rem 0.067rem 0.402rem rgba(27, 40, 50, 0.024), 0.0625rem 0.125rem 0.75rem rgba(27, 40, 50, 0.03), 0.1125rem 0.225rem 1.35rem rgba(27, 40, 50, 0.036), 0.2085rem 0.417rem 2.502rem rgba(27, 40, 50, 0.04302), 0.5rem 1rem 6rem rgba(27, 40, 50, 0.06), 0 0 0 0.0625rem rgba(27, 40, 50, 0.015);
+    --info: mediumblue;
+    --warning: darkorange;
+    --error: firebrick;
+    --success: forestgreen;
+    --button-text: var(--bg);
+    --mark-text: var(--text);
+    --code-bg: var(--accent-bg); } }
+
+.dark-theme .reverse-theme {
+  --bg: #f5f5f5;
+  --card-bg: #ffffff;
+  --accent-bg: #e6e9ef;
+  --contrast-bg: #c6d9df;
+  --text: #212121;
+  --text-light: #585858;
+  --text-vivid: black;
+  --text-heading: #212121;
+  --border: #cccfd6;
+  --accent: #0d47a1;
+  --code: #771122;
+  --preformatted: #444;
+  --marked: #f5e595;
+  --disabled: #efefef;
+  --box-shadow: 0.0145rem 0.029rem 0.174rem rgba(27, 40, 50, 0.01698), 0.0335rem 0.067rem 0.402rem rgba(27, 40, 50, 0.024), 0.0625rem 0.125rem 0.75rem rgba(27, 40, 50, 0.03), 0.1125rem 0.225rem 1.35rem rgba(27, 40, 50, 0.036), 0.2085rem 0.417rem 2.502rem rgba(27, 40, 50, 0.04302), 0.5rem 1rem 6rem rgba(27, 40, 50, 0.06), 0 0 0 0.0625rem rgba(27, 40, 50, 0.015);
+  --info: mediumblue;
+  --warning: darkorange;
+  --error: firebrick;
+  --success: forestgreen;
+  --button-text: var(--bg);
+  --mark-text: var(--text);
+  --code-bg: var(--accent-bg); }

@@ -1,0 +1,12 @@
+<%inherit file="base.mhtml" />
+<%!
+main_class = ''
+title = '404 Síða fannst ekki'
+%>
+
+<%block name="content">
+  <section role="main">
+    <h1 id="page-not-found">404</h1>
+    <p><strong>Síðan fannst ekki.</strong></p>
+  </section>
+</%block>

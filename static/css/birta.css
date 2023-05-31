@@ -1,0 +1,293 @@
+:root {
+    --main-font: var(--sans-font);
+    --heading-color: #e64708;
+    --heading-font: "Lucida Grande", Corbel, "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
+}
+body.light-theme {
+    --bg: #ddeeff99;
+    --accent-bg: #c4e2e9;
+    --card-bg: #f5f5f5;
+    --card-bg-hover: #fff5e6;
+}
+body {
+    --font-size: 1.3125em;
+}
+
+h1, h2, h3, h4 {
+    font-weight: normal;
+    color: var(--heading-color);
+}
+
+/* Header */
+header nav a, header nav [role="link"], header nav [role="dropdown"] {
+    color: var(--text);
+}
+header nav a.active,
+header nav [role="link"].active,
+header nav [role="dropdown"].active {
+    color: var(--text-vivid);
+    font-weight: bold;
+}
+header nav [role="dropdown"] a:not(.active) {
+    font-weight: normal;
+}
+nav svg.feather {
+    height: 1em;
+    width: 1em;
+    display: inline-block;
+    position: relative;
+    top: .2em;
+}
+
+/* Footer */
+footer a {
+    text-decoration: none;
+}
+footer .tagline {
+    font-size: larger;
+}
+footer .repo {
+    line-height: 1.2;
+}
+footer .copyright {
+    font-size: smaller;
+}
+
+/* Table of contents sidebar: */
+/* (1) Increased spacing */
+main.items-fixed {
+    --column-gap: calc(var(--spacing) * 3);
+}
+/* (2) Mobile/tablet hidden with trigger, desktop visible */
+article.toc {
+    display: none;
+}
+details.toc-trigger {
+    font-size: small;
+    border: none;
+}
+details.toc-trigger[open] + article.toc {
+    display: block;
+}
+/* (3) Position (in md and above) */
+@media (min-width: 960px) {
+    details.toc-trigger {
+        display: none;
+    }
+    article.toc {
+        display: block;
+        position: -webkit-sticky;
+        position: sticky;
+        top: var(--spacing);
+    }
+}
+/* (4) Link appearance */
+article.toc ul {
+    list-style: none;
+    margin: calc(var(--spacing) * 0.5) 0;
+    padding: 0;
+    line-height: 1.2;
+}
+article.toc li {
+    margin: 0;
+    padding: calc(var(--spacing) * 0.5) 0;
+    font-weight: normal;
+}
+article.toc > ul > li:first-child {
+    font-weight: bold;
+}
+
+/* Title + subtitle. */
+/* Title heading of page */
+[role="main"] > h1:first-child {
+    /*
+    font-size: 3.75rem;
+    font-weight: 200;
+    */
+    font-weight: bold;
+    font-size: 2rem;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--heading-color);
+}
+
+/* Mobile menu */
+nav .menu .menu-inner ul {
+    list-style: none;
+    line-height: 1.5;
+}
+nav .menu .menu-inner ul {
+    padding-left: 1.5rem;
+}
+nav .menu .menu-inner > ul {
+    padding-left: 1rem;
+}
+
+/* Card hover mode */
+article:hover {
+  background: var(--card-bg-hover) !important;
+}
+
+/* Images */
+figure {
+    display: table;
+    margin: var(--spacing) auto;
+    position: relative;
+}
+figure > img {
+    display: block;
+}
+figcaption p {
+    margin: 0;
+}
+figcaption {
+    display: table-caption;
+    caption-side: bottom;
+    width: 100%;
+    text-align: left;
+    font-size: smaller;
+    padding: var(--spacing);
+    background: #0000000c;
+}
+@media (min-width: 960px) {
+    figcaption {
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 0;
+        color: white;
+        background: #00000088;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 1s linear;
+    }
+    figure:hover figcaption {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+.grid figure {
+    align-self: start;
+}
+.imgalign-center {
+    margin: 1em auto;
+    text-align: center;
+}
+@media (min-width: 768px) {
+    /* Image floats */
+    .imgalign-right {
+        float: right;
+        clear: right;
+        margin-left: 2em;
+    }
+    .imgalign-left {
+        float: left;
+        clear: left;
+        margin-right: 2em;
+    }
+}
+
+/* Image grid */
+.galleri, .gallery {
+    margin: var(--spacing) auto;
+    text-align: center;
+}
+@media (min-width: 768px) {
+    .galleri, .gallery {
+        display: flex;
+        gap: 20px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .galleri > img, .gallery > img {
+        max-width: 345px;
+        margin: 0;
+    }
+}
+@media (min-width: 960px) {
+    .gallery > img, .galleri > img {
+        max-width: 445px;
+    }
+}
+
+/* Lyrics are represented as <pre> */
+
+pre {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin: calc(var(--spacing) * 2) 0;
+    padding: var(--spacing) calc(var(--spacing) * 2);
+    white-space: pre-wrap;
+    word-wrap: normal;
+    display: table;
+}
+pre code {
+    font-family: var(--sans-font);
+    font-size: inherit;
+}
+article pre {
+    background: none;
+    border-radius: none;
+    box-shadow: none;
+    border: none;
+}
+
+@media (min-width: 768px) {
+    pre {
+        padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+    }
+}
+
+/* Videos + Iframes */
+video, iframe {
+    width: 100%;
+    height: auto;
+    margin: var(--spacing) 0;
+    aspect-ratio: 16 / 9;
+    clear: both;
+}
+/* Older videos */
+.aspect-4-3 {
+    aspect-rato: 4 / 3;
+}
+
+/* Clear to push down after floats */
+.clear {
+    width: 100%;
+    clear: both;
+}
+
+/* Pill-like tag link */
+a.tag {
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 var(--spacing);
+    opacity: .8;
+    border-radius: calc(var(--border-radius) * 3);
+}
+a.tag:hover {
+    opacity: 1;
+}
+
+blockquote {
+    background: url(/static/img/quotes.gif) no-repeat calc(var(--spacing) * 1.5) calc(var(--spacing) * 2.5);
+    background-color: var(--accent-bg);
+    padding: calc(var(--spacing) * 2);
+    padding-left: calc(var(--spacing) * 6);
+    margin-left: var(--spacing);
+    border: none;
+    min-height: 2.30769230769231rem;
+}
+blockquote > p:first-child {
+    margin-top: 0;
+}
+blockquote > p:last-child {
+    margin-bottom: 0;
+}
+@media (max-width: 767px) {
+    blockquote {
+        font-size: .9524em;
+    }
+}
