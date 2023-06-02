@@ -43,6 +43,12 @@ if not pagelist:
     ${ _item(it) }
   % endfor
 % if not no_wrap:
+  ## Prevent horizontal stretching
+  % if len(pagelist) == 1:
+    <div></div><div></div>
+  % elif len(pagelist) == 2:
+    <div></div>
+  % endif
 </div>
 % endif
 
@@ -58,7 +64,7 @@ if not pagelist:
   <article>
     <header>
       <a href="${ url }">
-        <img src="${ img }?o=${ orig_img |u }" alt="${ pg.title |h }" width="512" height="320">
+        <img src="${ img }?o=${ orig_img |u }" loading="lazy" alt="${ pg.title |h }" width="512" height="320">
       </a>
     </header>
     <h4><a href="${ url }" class="text">${ pg.title }</a></h4>
