@@ -20,3 +20,13 @@ document.addEventListener("keydown", function(e){
     }
   }
 });
+
+(function(){
+    const plsum = document.querySelectorAll('.grid-sm article');
+    plsum.forEach(function(el){
+        const link = el.querySelector('h4 a')
+        if (link) {
+            el.addEventListener("click", function(ev){link.click()});
+        }
+    });
+})();
