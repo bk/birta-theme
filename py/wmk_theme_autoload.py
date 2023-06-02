@@ -182,7 +182,7 @@ def lyrics_section_detect(doc, pg):
     else:
         placed = False
         for i in range(cb_end+1, len(paras)):
-            if paras[i].startswith('#'):
+            if paras[i].startswith('#') or paras[i].startswith('<div'):
                 paras[i] = "</article>\n\n" + paras[i]
                 placed = True
                 break
