@@ -1,0 +1,37 @@
+<%inherit file="../base.mhtml" />
+<%!
+main_class = ''
+title = 'Leit'
+%>
+
+<%block name="content">
+  <section role="main">
+    <hgroup>
+      <h1 class="title">Leit</h1>
+      <p>Leita að efni á þessu vefsvæði</p>
+    </hgroup>
+    <div class="search-container">
+      <form id="searchform" action="/search/" method="GET">
+        <div class="cols">
+          <div class="cw8 cw9-sm cw10-md">
+            <input id="searchfield" type="search" name="q" placeholder="Leita&#x1F50D;">
+          </div>
+          <div class="cw4 cw3-sm cw2-md">
+            <input type="submit" role="button" class="mt-0 d-inl" style="width:auto" value="Leita">
+          </div>
+        </div>
+      </form>
+     <div class="search-results mt-4" id="results">
+       Javascript þarf að vera virkt til að hægt sé að leita.
+       </div>
+    </div>
+  </section>
+</%block>
+
+<%block name="scripts">
+${ parent.scripts() }
+<script src="${ 'js/search.js' | url }"></script>
+<script>
+ do_search("${ site.search_backend or '' }");
+</script>
+</%block>
