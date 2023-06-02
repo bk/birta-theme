@@ -8,6 +8,7 @@ body_class = ''
 main_class = 'items-fixed items-max-md'
 %>\
 <%namespace file="comp/utils.mc" import="nav_sub, tags, maybe_auto_title" />\
+<%namespace file="/lib/icons.mc" name="icons" />
 <!DOCTYPE html>
 <html lang="${ site.lang or 'en' }">
     <head>
@@ -91,6 +92,9 @@ main_class = 'items-fixed items-max-md'
                   % endif
                 % endfor
               </ul>
+              <ul class="other-nav">
+                <li><label for="search_modal" rel="search" role="link" class="plain mb-0">${ icons.search() } Leit</label></li>
+              </ul>
             % endif
             <!-- Mobile menu -->
             <div class="seen-110 hidden-md">
@@ -108,6 +112,9 @@ main_class = 'items-fixed items-max-md'
                         ${ nav_sub(nav_item, SELF_URL) }
                       % endfor
                     % endif
+                  </ul>
+                  <ul class="other-nav">
+                    <li><label for="search_modal" rel="search" role="link" class="plain mb-0">${ icons.search() } Leit</label></li>
                   </ul>
                 </div>
               </div>
@@ -139,6 +146,23 @@ main_class = 'items-fixed items-max-md'
           <p class="copyright">&copy; ${ site.copyright }</p>
         % endif
       </footer>
+    </%block>
+    <%block name="search_modal">
+      <div class="modal">
+        <input id="search_modal" type="checkbox" />
+        <label for="search_modal" class="overlay"></label>
+        <article class="search-modal">
+          <header>
+            <label for="search_modal" class="close">&times;</label>
+            <h4>Leita</h4>
+          </header>
+          <p>Sláðu inn leitarorð hér að neðan.</p>
+          <form action="${ 'search' | url }" method="get" class="ta-center">
+            <input type="search" name="q" class="form-control" placeholder="Leita..." id="wsm-query" title="Skrifaðu leitarorð hér">
+            <button>Leita</button>
+          </form>
+        </article>
+      </div>
     </%block>
     <%block name="scripts">
     <script>
