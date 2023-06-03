@@ -144,9 +144,9 @@ def strong_emph_fixup(doc):
 
 def lyrics_section_detect(doc, pg):
     """
-    A lyrics section consists of a heading, optional paragraph, a code block,
-    and an optional number of non-heading paragraph following the code block.
-    We try to enclose such sections in <article>...</article>.
+    A lyrics section consists of a heading, optional paragraph or two, a code
+    block, and an optional number of non-heading paragraph following the code
+    block.  We try to enclose such sections in <article>...</article>.
     """
     if '<article' in doc:
         return doc
@@ -174,6 +174,8 @@ def lyrics_section_detect(doc, pg):
         paras[cb_start-1] = '<article markdown="1">\n\n' + paras[cb_start-1]
     elif paras[cb_start-2].startswith('#'):
         paras[cb_start-2] = '<article markdown="1">\n\n' + paras[cb_start-2]
+    elif cb_ix[0] > 3 and paras[cb_start-3].startswith('#'):
+        paras[cb_start-3] = '<article markdown="1">\n\n' + paras[cb_start-3]
     else:
         return doc
     pg.has_auto_lyrics_section = True
