@@ -170,12 +170,23 @@ def lyrics_section_detect(doc, pg):
         return doc
     cb_start = cb_ix[0]
     cb_end = cb_ix[-1]
+    max_line_length = 0
+    line_count = (cb_end - cb_start) * 2
+    maybe_multicol = ''
+    for p in paras[cb_start:cb_end+1]:
+        lines = p.split("\n")
+        for l in lines:
+            if len(l) > max_line_length:
+                max_line_length = len(l)
+        line_count += len(lines)
+    if max_line_length < 42 and line_count > 16:
+        maybe_multicol = ' class="kolonner"'
     if paras[cb_start-1].startswith('#'):
-        paras[cb_start-1] = '<article markdown="1">\n\n' + paras[cb_start-1]
+        paras[cb_start-1] = f'<article markdown="1"{maybe_multicol}>\n\n' + paras[cb_start-1]
     elif paras[cb_start-2].startswith('#'):
-        paras[cb_start-2] = '<article markdown="1">\n\n' + paras[cb_start-2]
+        paras[cb_start-2] = f'<article markdown="1"{maybe_multicol}>\n\n' + paras[cb_start-2]
     elif cb_ix[0] > 3 and paras[cb_start-3].startswith('#'):
-        paras[cb_start-3] = '<article markdown="1">\n\n' + paras[cb_start-3]
+        paras[cb_start-3] = f'<article markdown="1"{maybe_multicol}>\n\n' + paras[cb_start-3]
     else:
         return doc
     pg.has_auto_lyrics_section = True
@@ -184,7 +195,7 @@ def lyrics_section_detect(doc, pg):
     else:
         placed = False
         for i in range(cb_end+1, len(paras)):
-            if paras[i].startswith('#') or paras[i].startswith('<div'):
+            if paras[i].startswith(('#', '<div', '<iframe')):
                 paras[i] = "</article>\n\n" + paras[i]
                 placed = True
                 break
