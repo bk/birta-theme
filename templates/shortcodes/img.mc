@@ -1,4 +1,4 @@
-<%page args="src, align='center', size='650x', alt='', caption=None, sticky_width=True" />
+<%page args="src, align='center', size='650x', alt='', caption=None, sticky_width=True, rz_op='fit'" />
 <%!
 import os
 from urllib.parse import quote_plus
@@ -20,7 +20,6 @@ sticky_widths = (
 orig_src = src
 if src.startswith('mynd/'):
     src = '/' + src
-rz_op = 'fit'
 height_attr = True
 width_attr = True
 if size and 'x' in size:
@@ -35,6 +34,8 @@ if size and 'x' in size:
         rz_op = 'fit_width'
     if not width:
         rz_op = 'fit_height'
+    if width and height and width == height:
+        rz_op = 'fill'
 if not src.startswith(('/', 'http:', 'https:')):
     src = os.path.normpath(os.path.join(os.path.dirname(SELF_URL), src))
 if width or height:

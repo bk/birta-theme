@@ -13,6 +13,13 @@ body.light-theme {
 body {
     --font-size: 1.3125em;
 }
+/* Reverse Avec defaults wrt this */
+a, [role="link"] {
+    text-decoration: none;
+}
+a:hover, [role="link"]:hover {
+    text-decoration: underline;
+}
 
 h1, h2, h3, h4 {
     font-weight: normal;
@@ -233,7 +240,7 @@ pre code {
 }
 article pre {
     background: none;
-    border-radius: none;
+    border-radius: 0;
     box-shadow: none;
     border: none;
 }
@@ -254,7 +261,7 @@ video, iframe {
 }
 /* Older videos */
 .aspect-4-3 {
-    aspect-rato: 4 / 3;
+    aspect-ratio: 4 / 3;
 }
 
 /* Clear to push down after floats */
@@ -300,4 +307,32 @@ blockquote > p:last-child {
 
 button, [role="button"], input[type="submit"], input[type="reset"], input[type="button"] {
     font-size: inherit;
+}
+
+/* Special links */
+a[href*=".mp3"], a[href*=".m4a"] {
+    display: inline-block;
+    padding-left: 1.315em;
+    background: url(/img/icons/volume-2-blue.svg) left center no-repeat;
+}
+
+/* Multicolumn lyrics */
+@media (min-width: 768px) {
+    article pre > code {
+        padding-left: 30px;
+    }
+    article.kolonner pre {
+        display: block;
+    }
+    article.kolonner pre > code {
+        column-count: 2;
+        column-gap: 40px;
+        column-rule: 2px solid #e5e5e5;
+        column-width: 274px;
+    }
+}
+@media (min-width: 960px) {
+    article.kolonner pre > code {
+        column-width: 370px;
+    }
 }

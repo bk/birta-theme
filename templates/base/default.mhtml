@@ -7,7 +7,7 @@ nav_class = ''
 body_class = ''
 main_class = 'items-fixed items-max-md'
 %>\
-<%namespace file="comp/utils.mc" import="nav_sub, tags, maybe_auto_title" />\
+<%namespace file="comp/utils.mc" import="nav_sub, tags, maybe_auto_title, dates" />\
 <%namespace file="/lib/icons.mc" name="icons" />
 <!DOCTYPE html>
 <html lang="${ site.lang or 'en' }">
@@ -131,6 +131,7 @@ main_class = 'items-fixed items-max-md'
             ${ maybe_auto_title() }
             ${ CONTENT }
             ${ tags() }
+            ${ dates() }
           </section>
         % else:
           ${ next.body() }

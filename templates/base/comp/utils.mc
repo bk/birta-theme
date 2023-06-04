@@ -52,3 +52,21 @@ if not site.auto_title_h1 or (page and page.no_auto_title_h1):
       <h1 id="auto-${ page.title | slugify }">${ page.title }</h1>
   % endif
 </%def>
+
+<%def name="dates()">
+  % if page and page.show_dates and (page.date or page.created_date or page.gitdate):
+    <%
+      # NOTE: sorting is by page.date, but created_date is more accurate if present
+      cdate = page.created_date or page.date
+      mdate = page.modified_date or MTIME  # NOTE: perhaps disregard MTIME later
+      dfmt = '%-d.%-m. %Y kl. %-H:%M'
+    %>
+    <div class="pagedate mt-5 text-muted smaller ta-c">
+      % if mdate and mdate != cdate:
+        <div class="mtime">Síðast breytt <time datetime="${ mdate | date_to_iso }Z" class="relativedate" title="${ mdate | date_to_iso }">${ mdate | date(fmt=dfmt) }</time></div>
+      % endif
+      <div class="ctime">Síða stofnuð <time datetime="${ cdate | date_to_iso }Z" class="relativedate" title="${ cdate | date_to_iso }">${ cdate | date(fmt=dfmt) }</time></div>
+     <div id="pagehits">&nbsp;</div>
+   </div>
+ % endif
+</%def>
