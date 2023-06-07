@@ -18,12 +18,14 @@ def ikiwiki2shortcode(doc, pg):
         'meta': meta_directive,
         'map': map_directive,
         'inline': inline_directive,
+        'pdf': pdf_directive,
     }
     for k in known_directives:
         if '[[!'+k in doc:
             doc = known_directives[k](doc, pg)
     doc = ikiwiki_links(doc)
     return strong_emph_fixup(doc)
+
 
 def _simple_directive(name, doc, newname=None):
     if newname is None:
@@ -43,8 +45,13 @@ def _simple_directive(name, doc, newname=None):
         ret += rest
     return ret
 
+
 def img_directive(doc, pg):
     return _simple_directive('img', doc)
+
+
+def pdf_directive(doc, pg):
+    return _simple_directive('pdf', doc)
 
 
 def tag_directive(doc, pg):
