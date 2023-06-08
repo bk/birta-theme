@@ -2,6 +2,7 @@
 
 import re
 import datetime
+import markdown
 from wmk_utils import slugify
 
 
@@ -211,7 +212,45 @@ def lyrics_section_detect(doc, pg):
     return "\n\n".join(paras)
 
 
+def get_main_img(it, fallback=True):
+    """
+    `it` is a MDContentList item.
+    Note that the image path is not normalized for now.
+    """
+    if it['data']['page'].main_img:
+        return it['data']['page'].main_img
+    found = re.search(r'([^ "]+\.jpe?g)', it['doc'], flags=re.I)
+    if found:
+        return found.group(1)
+    elif fallback:
+        return '/img/fallback.jpg'
+    return None
+
+
+def get_summary(it, max_length=150):
+    """
+    `it` is a MDContentList item.
+    """
+    if it['data']['page'].summary:
+        return it['data']['page'].summary
+    found = re.search(r'\*\*(.+?)\*\*', it['doc'], flags=re.S)
+    if found:
+        summary = markdown.markdown(found.group(1))
+    else:
+        summary = markdown.markdown(it['doc'])
+    summary = re.sub(r'\{\{<.*?>\}\}', '', summary)
+    summary = re.sub(r'\[\[.*?\]\]', ' ', summary)
+    summary = re.sub(r'<[^>]+>', ' ', summary)
+    summary = re.sub(r'\s\s+', ' ', summary)
+    summary = summary.strip()
+    if len(summary) > max_length:
+        summary = summary[:max_length]
+        summary = re.sub(r'\s\S+\s*$', '…', summary)
+    return summary
+
 autoload = {
     'ikiwiki2shortcode': ikiwiki2shortcode,
     'lyrics_section_detect': lyrics_section_detect,
+    'get_main_img': get_main_img,
+    'get_summary': get_summary,
 }

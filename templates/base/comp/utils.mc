@@ -1,5 +1,6 @@
-<%! import re %>
+<%! import re, random %>
 <%namespace name="icons" file="/lib/icons.mc" />
+<%namespace name="summary" file="/lib/summary.mc" />
 
 
 <%def name="nav_sub(nav_item, current_url='')">
@@ -69,4 +70,41 @@ if not site.auto_title_h1 or (page and page.no_auto_title_h1):
      <div id="pagehits">&nbsp;</div>
    </div>
  % endif
+</%def>
+
+<%def name="maybe_bottom_teasers()">
+  <% related = [] %>
+  % if page and page.related_pages and isinstance(page.related_pages, list):
+    <%
+    rel = set([_.lower() for _ in page.related_pages])
+    srt = dict([(_.lower(), i) for i, _ in enumerate(page.related_pages)])
+    try:
+        related = [_ for _ in MDCONTENT if _['data']['page']['title'].lower() in rel]
+        related.sort(key=lambda _: srt.get(_['data']['page']['title'].lower(), 99))
+    except:
+        pass
+    %>
+    % if related:
+      <div class="other-pages related-pages mt-4">
+        <h4>Tengdar síður</h4>
+        ${ summary.body(related, no_intro=True) }
+      </div>
+    % endif
+  % endif
+  % if not related and page and page.tags:
+    <%
+    found = MDCONTENT.has_tag(page.tags) or []
+    if found:
+        random.shuffle(found)
+        found = found[:7]
+        found = [_ for _ in found if _['data']['SELF_URL'] != SELF_URL]
+        found = found[:6]
+    %>
+    % if found:
+      <div class="other-pages mt-4">
+        <h4>Aðrar síður í ${ 'þessum flokkum' if len(page.tags)>1 else 'sama flokki' }</h4>
+        ${ summary.body(found, no_intro=True) }
+      </div>
+    % endif
+  % endif
 </%def>
