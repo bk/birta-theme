@@ -1,4 +1,4 @@
-<%page args="tagname, css_class=''" />
+<%page args="tagname, css_class='', exclude=None" />
 <%namespace name="resiz" file="/shortcodes/resize_image.mc" />
 <%!
 from wmk_theme_autoload import get_main_img
@@ -8,8 +8,12 @@ from wmk import slugify
 tagged = MDCONTENT.has_tag(tagname)
 if not tagged:
     return ''
-tagged = tagged.sorted_by_date()[:5]
-tag_page = MDCONTENT.page_match({'slug': slugify(tagname)})
+if tagged:
+    tagged = tagged.page_match(exclude, inverse=True)
+    tagged = tagged.sorted_by_date()[:4]
+if not len(tagged) == 4:
+    return ''
+tag_page = MDCONTENT.page_match({'slug': '^'+slugify(tagname)+'$'})
 img = None
 orig_img = None
 if tag_page:
@@ -21,22 +25,23 @@ if tag_page:
             webroot=tag_page['data']['WEBROOT'],
             self_url=tag_page['url']))
 if not img:
-    orig_img = get_main_img(tagged[4])
+    orig_img = get_main_img(tagged[3])
     if orig_img.startswith('mynd/'):
         orig_img = '/' + orig_img
     img = capture(lambda: resiz.body(
             orig_img, width=800, height=800,
-            webroot=tagged[4]['data']['WEBROOT'],
-            self_url=tagged[4]['url']))
+            webroot=tagged[3]['data']['WEBROOT'],
+            self_url=tagged[3]['url']))
 tag_url = tag_page['url'] if tag_page else '/flokkar/' + slugify(tagname) + '/'
 %>
 <div class="round-teaser tag-teaser ${ css_class }">
   <a href="${tag_url}">
-    <span>${ tagname }</span>
+    <span>${ tagname }<br><span class="smaller">Skoða flokkinn</span></span>
     <img src="${ img }"?o=${ orig_img |u }" loading="lazy" alt="${ tagname |h}" width="680" height="680" class="borad-round">
   </a>
   <div class="intro">
-    <div class="grid-xs c3 c3-md">
+    <h4 class="section mt-0 mb-1">Sýnishorn</h4>
+    <div class="grid-xs c2 c3-md">
       % for i, it in enumerate(tagged[:3]):
         ${ _miniteaser(it, i) }
       % endfor
@@ -53,7 +58,7 @@ if orig_img.startswith('mynd/'):
     orig_img = '/' + orig_img
 img = capture(lambda: resiz.body(orig_img, width=320, height=320, webroot=it['data']['WEBROOT'], self_url=url))
 %>
-  <div class="miniteaser">
+  <div class="miniteaser${ ' seen-011 hidden-sm' if i==2 else '' }">
     <a href="${ url }"><img src="${img}?o=${ orig_img |u }" alt="${ title |h }" class="borad"></a>
     <p><a href="${ url }" class="text plain">${ title }</a></p>
   </div>

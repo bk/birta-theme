@@ -1,8 +1,10 @@
 :root {
+    --sans-font: Jost, "Avenir Next", Avenir, sans-serif;
     --main-font: var(--sans-font);
     --heading-color: #e64708;
     --dark-accent-bg: #548289; /*#5a9dad; */
-    --heading-font: "Lucida Grande", Corbel, "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
+    /* --heading-font: "Lucida Grande", Corbel, "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif; */
+    --heading-font: var(--sans-font);
     --border-radius-big: calc(var(--border-radius) * 3);
 }
 body.light-theme {
@@ -50,6 +52,9 @@ header nav [role="dropdown"].active {
     color: var(--text-vivid);
     font-weight: bold;
 }
+header nav > ul {
+    padding-top: .25rem;
+}
 header nav [role="dropdown"] a:not(.active) {
     font-weight: normal;
 }
@@ -64,6 +69,22 @@ nav svg.feather {
 details[role="dropdown"] li a {
     display: block;
 }
+
+nav .show-menu~.menu {
+    max-width: 290px;
+    background: var(--contrast-bg);
+}
+nav .show-menu~.menu h4 {
+    color: white;
+    font-weight: bold;
+}
+nav .show-menu:checked~label.burger {
+    background: rgba(17, 17, 17, 0.05);
+}
+nav .menu .menu-inner ul li {
+    padding-bottom: .25rem;
+}
+
 
 /* Footer */
 footer a {
@@ -132,10 +153,12 @@ article.toc > ul > li:first-child {
     font-size: 3.75rem;
     font-weight: 200;
     */
-    font-weight: bold;
-    font-size: 2rem;
+    font-size: 2.2rem;
     text-transform: uppercase;
     border-bottom: 2px solid var(--heading-color);
+}
+[role="main"] .mdcontent img {
+    border-radius: var(--border-radius);
 }
 
 /* Mobile menu */
@@ -271,6 +294,10 @@ article pre {
     box-shadow: none;
     border: none;
 }
+article.gitargrip pre code {
+    font-family: var(--mono-font);
+    font-size: 1.15rem;
+}
 
 @media (min-width: 768px) {
     pre {
@@ -372,6 +399,12 @@ h2.fp-section {
     margin-top: 2em;
     margin-bottom: 0;
 }
+h4.section {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
 
 .big-teaser {
     background: var(--card-bg-hover);
@@ -399,6 +432,8 @@ h2.fp-section {
     }
 }
 
+/* "Round teasers" and Tag teasers */
+
 .round-teaser {
     border-radius: var(--border-radius-big);
     box-shadow: var(--box-shadow);
@@ -406,6 +441,9 @@ h2.fp-section {
     min-height: 18rem;
     margin-top: 3rem;
     background: var(--card-bg-hover);
+}
+.round-teaser.tag-teaser {
+    background: var(--card-bg);
 }
 .round-teaser > a {
     display: block;
@@ -415,6 +453,11 @@ h2.fp-section {
     top: -1rem;
     margin: 0 auto;
 }
+.round-teaser.tag-teaser > a {
+    height: 19rem;
+    width: 19rem;
+    top: -0.5rem;
+}
 .round-teaser > a img {
     box-shadow: var(--box-shadow);
     border: 1px solid var(--contrast-bg);
@@ -423,27 +466,44 @@ h2.fp-section {
     padding: var(--spacing) calc(var(--spacing) * 2);
     padding-top: 0;
 }
+.tag-teaser .intro h4 {
+    opacity: .8;
+}
 .tag-teaser .intro p {
     text-align: center;
     margin: 0;
     font-size: 1rem;
     line-height: 1.2;
+    height: 1.2em;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .tag-teaser > a {
     display: block;
     position: relative;
 }
+.tag-teaser > a:hover, .miniteaser > a:hover {
+    opacity: .8;
+}
 .tag-teaser > a > span {
     position: absolute;
-    bottom: 2rem;
-    left: 0;
-    right: 0;
-    font-size: 1.2rem;
+    top: 7.5rem;
+    left: 5px;
+    right: 5px;
+    font-size: 1.4rem;
+    line-height: 1.2;
     text-align: center;
     padding: .5rem;
     color: white;
     font-weight: bold;
-    background: #0004;
+    background: #0005;
+    text-shadow: 1px 1px black;
+}
+.tag-teaser > a > span > span.smaller {
+    font-size: 1rem;
+    font-weight: normal;
 }
 @media (min-width: 768px) {
     .round-teaser {
@@ -470,4 +530,33 @@ h2.fp-section {
     .tag-teaser .intro {
         align-self: center;
     }
+}
+
+.hero {
+    position: relative;
+}
+.hero h1, .hero h2 {
+    text-shadow: black 1px 0 7px;
+}
+.hero h1 {
+    color: white;
+    font-weight: bold;
+    font-size: 2.8rem;
+}
+@media (min-width: 768px) {
+    .hero h1 {
+        font-size: 4.5rem;
+    }
+}
+@media (min-width: 960px) {
+    .hero h1 {
+        font-size: 5.2rem;
+    }
+}
+.hero h2 {
+    color: #e5e5e5;
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    text-align: center;
 }

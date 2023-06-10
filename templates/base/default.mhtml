@@ -40,6 +40,9 @@ main_class = 'items-fixed items-max-md'
         % if site.avec_theme and site.avec_theme in ('default', 'one', 'gruvbox', 'pico', 'plain', 'selenized'):
         <link href="${ 'css/avec/avec.%s-theme.css' % site.avec_theme |url }" rel="stylesheet">
         % endif
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jost,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
         <link href="${ 'css/birta.css' | url }" rel="stylesheet">
         % for path in (site.extra_css or []):
         <link href="${ path | url }" rel="stylesheet">
@@ -58,7 +61,7 @@ main_class = 'items-fixed items-max-md'
       <%block name="extrahead"></%block>
     </head>
 
-    <body class="light-theme ${ page.body_class if page.body_class else self.attr.body_class }">
+    <body class="light-theme${ page.body_class if page.body_class else self.attr.body_class }">
     <%block name="header">
       <header class="${ self.attr.header_class }">
         <div class="container items-fixed">
@@ -124,16 +127,16 @@ main_class = 'items-fixed items-max-md'
         </div>
       </header>
     </%block>
-    <main class="${ page.main_class or self.attr.main_class }">
+    <main class="${ page.main_class or self.attr.main_class }${ ' pb-0' if page else '' }">
       <%block name="content">
         % if page:
           <section role="main">
             ${ maybe_auto_title() }
-            ${ CONTENT }
+            <div class="mdcontent">${ CONTENT }</div>
             ${ tags() }
             ${ dates() }
-            ${ maybe_bottom_teasers() }
           </section>
+          ${ maybe_bottom_teasers() }
         % else:
           ${ next.body() }
         % endif

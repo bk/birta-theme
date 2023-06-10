@@ -144,8 +144,8 @@ def clean_html(s):
 
 
 def get_summary(s):
-    if len(s) > 210:
-        s = s[:200]
+    if len(s) > 160:
+        s = s[:160]
         s = re.sub(r' \S+$', '', s)
         s = s.strip()
         s += '…'

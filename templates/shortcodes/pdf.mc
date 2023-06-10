@@ -46,7 +46,7 @@ resize_kwargs.update(resize_opt)
 thumb = capture(lambda: resiz.body(**resize_kwargs))
 %>
 % if caption:
-  ${ figure.body(thumb, caption=caption, width=img_width, height=img_height, alt=orig_src, resize=False, css_class="pdf-img") }
+  ${ figure.body(thumb, caption=caption, width=img_width, height=img_height, alt=orig_src, resize=False, css_class="pdf-img", img_link=orig_src) }
 % else:
   <a href="${ orig_src }"><img src="${ thumb }" loading="lazy" alt="${ orig_src |h }" class="pdf-img"></a>
 % endif
