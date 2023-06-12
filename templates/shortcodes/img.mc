@@ -1,13 +1,10 @@
-<%page args="src, align='center', size='650x', alt='', caption=None, sticky_width=True, rz_op='fit'" />
+<%page args="src, align='center', size='650x', alt='', caption=None, sticky_width=True, rz_op='fit', img_link=None, link_target='_blank'" />
 <%!
 import os
 from urllib.parse import quote_plus
 %>\
 <%doc>
-Bátsferð_herra_Gumpy.mdwn:[[!img DSC05393.jpg align="center" size="650x" alt=""]]
-Bátsferð_herra_Gumpy.mdwn:[[!img DSC05397.jpg align="center" size="650x" caption="Hesturinn: Má ég koma með herra Gumpy?"]]
-Bátsferð_herra_Gumpy.mdwn:[[!img A1myIRdsYmL.jpg align="right" size="300x" caption=""]]
-Búkolla.mdwn:[[!img mynd/Búkolla2.jpg size="200x" class="img thumb" align="right" caption="Stráksi og Búkolla"]] 
+Shortcode to handle translated IkiWiki-style [[!img...]] directives.
 </%doc>
 <%namespace name="resiz" file="resize_image.mc" />
 <%namespace name="figure" file="figure.mc" />
@@ -20,8 +17,6 @@ sticky_widths = (
 orig_src = src
 if src.startswith('mynd/'):
     src = '/' + src
-height_attr = True
-width_attr = True
 if size and 'x' in size:
     width, height = size.split('x')
     width = int(width) if width else None
@@ -47,9 +42,17 @@ if width or height:
 if width and width >= 600:
     align = 'center' # force center if image is to wide for floating
 css_class = 'imgalign-%s' % (align or 'none')
+if img_link and img_link.lower() in ("1", "true", "yes", "on"):
+    img_link = orig_src
+if img_link and img_link.startswith(('mynd/', 'file/')):
+    img_link = '/' + img_link
 %>
 % if caption:
-  ${ figure.body(src, caption=caption, width=(width if width_attr else None), height=(height if height_attr else None), alt=alt, resize=False, css_class=css_class) }
+  ${ figure.body(src, caption=caption, width=width, height=height, alt=alt,
+                 resize=False, css_class=css_class, img_link=img_link, link_target=link_target) }
+% elif img_link:
+  <a href="${ img_link }"${ f' target="{link_target}"' if link_target else '' }><img src="${ src }" loading="lazy" alt="${ alt or '' |h }" ${ 'width="%d"' % width if width else '' } ${ 'height="%d"' % height if height else '' } class="${ css_class }"></a>
+
 % else:
   <img src="${ src }" loading="lazy" alt="${ alt or '' |h }" ${ 'width="%d"' % width if width else '' } ${ 'height="%d"' % height if height else '' } class="${ css_class }">
 % endif
