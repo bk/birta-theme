@@ -195,8 +195,13 @@ figure {
     margin: var(--spacing) auto;
     position: relative;
 }
-figure > img {
+figure img {
     display: block;
+}
+figure.pdf-img img, img.pdf-img {
+    background: white;
+    padding: 1rem;
+    max-width: 320px;
 }
 figcaption p {
     margin: 0;
@@ -211,7 +216,7 @@ figcaption {
     background: #0000000c;
 }
 @media (min-width: 960px) {
-    figcaption {
+    figure:not(.pdf-img) figcaption {
         position: absolute;
         bottom: 0;
         margin-bottom: 0;
@@ -249,7 +254,7 @@ figcaption {
 
 /* Image grid */
 .galleri, .gallery {
-    margin: var(--spacing) auto;
+    margin: calc(var(--spacing) * 3) auto;
     text-align: center;
 }
 @media (min-width: 768px) {
@@ -264,6 +269,10 @@ figcaption {
     .galleri img, .gallery img {
         max-width: 345px;
         margin: 0;
+    }
+    .galleri figure {
+        margin-top: 0;
+        margin-bottom: 0;
     }
 }
 @media (min-width: 960px) {
