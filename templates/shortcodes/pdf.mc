@@ -1,4 +1,4 @@
-<%page args="src, caption=None, img_width=512, img_height=None, rz_op='fit_width'" />
+<%page args="src, caption='PDF - smellið til að opna', img_width=512, img_height=None, rz_op='fit_width'" />
 <%!
 import os
 import subprocess
@@ -46,7 +46,7 @@ resize_kwargs.update(resize_opt)
 thumb = capture(lambda: resiz.body(**resize_kwargs))
 %>
 % if caption:
-  ${ figure.body(thumb, caption=caption, width=img_width, height=img_height, alt=orig_src, resize=False, css_class="pdf-img", img_link=orig_src) }
+  ${ figure.body(thumb, caption=caption, width=img_width, height=img_height, alt=orig_src, resize=False, css_class="pdf-img", img_link=orig_src, link_target="_blank") }
 % else:
-  <a href="${ orig_src }"><img src="${ thumb }" loading="lazy" alt="${ orig_src |h }" class="pdf-img"></a>
+  <a href="${ orig_src }" target="_blank" title="PDF - smellið til að opna"><img src="${ thumb }" loading="lazy" alt="${ orig_src |h }" class="pdf-img"></a>
 % endif
