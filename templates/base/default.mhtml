@@ -180,6 +180,9 @@ main_class = 'items-fixed items-max-md'
     % for path in page.extra_javascript:
       <script src="${ path | url }" defer></script>
     % endfor
+    % if site.count_url:
+      <script src="${ site.count_url }?u=1&title=${ (page.title if page else self.attr.title) |u }" defer></script>
+    % endif
     </%block>
   </body>
 </html>
