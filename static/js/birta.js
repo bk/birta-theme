@@ -22,6 +22,20 @@ document.addEventListener("keydown", function(e){
 });
 
 (function(){
+    const search_modal = document.getElementById('search_modal');
+    const qfield = document.getElementById("wsm-query");
+    if (search_modal) {
+        search_modal.addEventListener("change", function(e) {
+            if (search_modal.checked) {
+                qfield.focus();
+            } else {
+                qfield.blur();
+            }
+        });
+    }
+})();
+
+(function(){
     const plsum = document.querySelectorAll('.grid-sm article');
     plsum.forEach(function(el){
         const link = el.querySelector('h4 a')
