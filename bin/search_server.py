@@ -49,10 +49,6 @@ def run_query(db, query, limit, required_fields):
     return ret
 
 
-
-
-
-
 if __name__ == '__main__':
     if not len(sys.argv) == 2:
         print("Usage: search_server.py configuration_file.json")
@@ -61,4 +57,5 @@ if __name__ == '__main__':
     host = config.get('host', 'localhost')
     port = config.get('port', 7088)
     debug = config.get('debug', True)
-    run(host=host, port=port, debug=debug)
+    server = config.get('server', None)
+    run(host=host, port=port, debug=debug, server=server)
