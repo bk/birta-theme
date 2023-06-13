@@ -96,7 +96,7 @@ main_class = 'items-fixed items-max-md'
                 % endfor
               </ul>
               <ul class="other-nav">
-                <li><label for="search_modal" rel="search" role="link" class="plain mb-0">${ icons.search() } Leit</label></li>
+                <li><label for="search_modal" rel="search" role="link" class="plain mb-0 seen-011">${ icons.search() } Leit</label></li>
               </ul>
             % endif
             <!-- Mobile menu -->
@@ -144,9 +144,23 @@ main_class = 'items-fixed items-max-md'
     </main>
     <%block name="footer">
       <footer class="${ self.attr.footer_class }">
-        % if site.tagline:
-          <p class="tagline">${ site.tagline }</p>
-        % endif
+        <%block name="footer_heading">
+          <p class="brand larger${ ' mb-0' if site.tagline else '' }">
+            <strong class="larger">${ site.name or '(site.name?)' }</strong>
+          </p>
+          % if site.tagline:
+            <p class="tagline mt-0">${ site.tagline }</p>
+          % endif
+        </%block>
+        <%block name="footer_links">
+          % if site.footer_links:
+            <p class="footer-links">
+              % for i, link in enumerate(site.footer_links):
+                ${ '<span>|</span>' if i>0 else '' } <a href="${ link['url'] |url }">${ link['title'] }</a>
+              % endfor
+            </p>
+          % endif
+        </%block>
         % if site.copyright:
           <p class="copyright">&copy; ${ site.copyright }</p>
         % endif
@@ -157,7 +171,7 @@ main_class = 'items-fixed items-max-md'
         <input id="search_modal" type="checkbox" />
         <label for="search_modal" class="overlay"></label>
         <article class="search-modal">
-          <header>
+          <header class="reverse-theme">
             <label for="search_modal" class="close">&times;</label>
             <h4>Leita</h4>
           </header>
