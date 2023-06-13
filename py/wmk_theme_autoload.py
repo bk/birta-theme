@@ -219,7 +219,7 @@ def get_main_img(it, fallback=True):
     """
     if it['data']['page'].main_img:
         return it['data']['page'].main_img
-    found = re.search(r'([^ "]+\.jpe?g)', it['doc'], flags=re.I)
+    found = re.search(r'([^ "]+\.(?:jpe?g|png))', it['doc'], flags=re.I)
     if found:
         return found.group(1)
     elif fallback:
@@ -238,8 +238,11 @@ def get_summary(it, max_length=150):
         summary = markdown.markdown(found.group(1))
     else:
         summary = markdown.markdown(it['doc'])
+    summary = re.sub(r'\{\{< *linkto.*?label="(.*?)".*?>\}\}', r'\1', summary)
     summary = re.sub(r'\{\{<.*?>\}\}', '', summary)
-    summary = re.sub(r'\[\[.*?\]\]', ' ', summary)
+    summary = re.sub(r'\[\[([^\!\|\]]+)\|.*?\]\]', r'\1', summary) # link with label
+    summary = re.sub(r'\[\[([^\!\|\]]+)\]\]', r'\1', summary) # link without label
+    summary = re.sub(r'\[\[.*?\]\]', ' ', summary) # ikiwiki directives
     summary = re.sub(r'<[^>]+>', ' ', summary)
     summary = re.sub(r'\s\s+', ' ', summary)
     summary = summary.strip()
