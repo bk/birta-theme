@@ -9,9 +9,14 @@ tagged = MDCONTENT.has_tag(tagname)
 if not tagged:
     return ''
 if tagged:
-    tagged = tagged.page_match(exclude, inverse=True)
-    tagged = tagged.sorted_by_date()[:4]
-if not len(tagged) == 4:
+    if exclude:
+        tagged = tagged.page_match(exclude, inverse=True)
+    tagged = tagged.sorted_by_date()[:5]
+    # Help to prevent duplicates in subsequent calls to tag_teaser
+    if exclude and 'id' in exclude and isinstance(exclude['id'], list):
+        for it in tagged[:4]:
+            exclude['id'].append(it['data']['page'].id)
+if not len(tagged) == 5:
     return ''
 tag_page = MDCONTENT.page_match({'slug': '^'+slugify(tagname)+'$'})
 img = None
@@ -41,8 +46,8 @@ tag_url = tag_page['url'] if tag_page else '/flokkar/' + slugify(tagname) + '/'
   </a>
   <div class="intro">
     <h4 class="section mt-0 mb-1">Sýnishorn</h4>
-    <div class="grid-xs c2 c3-md">
-      % for i, it in enumerate(tagged[:3]):
+    <div class="grid-xs c2 c3-md c4-lg">
+      % for i, it in enumerate(tagged[:4]):
         ${ _miniteaser(it, i) }
       % endfor
     </div>
@@ -57,8 +62,13 @@ orig_img = get_main_img(it)
 if orig_img.startswith('mynd/'):
     orig_img = '/' + orig_img
 img = capture(lambda: resiz.body(orig_img, width=320, height=320, webroot=it['data']['WEBROOT'], self_url=url))
+cls = [
+    '',
+    '',
+    ' seen-011 hidden-sm',
+    ' seen-001', ]
 %>
-  <div class="miniteaser${ ' seen-011 hidden-sm' if i==2 else '' }">
+  <div class="miniteaser${ cls[i] }">
     <a href="${ url }"><img src="${img}?o=${ orig_img |u }" alt="${ title |h }" class="borad"></a>
     <p><a href="${ url }" class="text plain">${ title }</a></p>
   </div>
