@@ -14,6 +14,11 @@ body.light-theme {
     --card-bg-hover: #fff5e6;
     --button-text: var(--card-bg);
 }
+.dark-theme, .light-theme .reverse-theme {
+    --bg: #1a3943; /* #143239; #012743; */
+    --contrast-bg: #26464f; /* #1a3943; #113743; */
+    --accent-bg: #234246; /* #1a3943; #113743; */
+}
 .bg-dark-accent {
     background: var(--dark-accent-bg);
 }
@@ -53,7 +58,7 @@ header nav [role="dropdown"].active {
     font-weight: bold;
 }
 header nav > ul {
-    padding-top: .25rem;
+    padding-top: .125rem;
 }
 header nav [role="dropdown"] a:not(.active) {
     font-weight: normal;
@@ -73,6 +78,7 @@ details[role="dropdown"] li a {
 nav .show-menu~.menu {
     max-width: 290px;
     background: var(--contrast-bg);
+    box-shadow: -7px 0 4px 2px #0002;
 }
 nav .show-menu~.menu h4 {
     color: white;
@@ -186,7 +192,14 @@ main article > header img {
 }
 /* Card hover mode */
 article:hover {
-  background: var(--card-bg-hover) !important;
+    background: var(--card-bg-hover) !important;
+}
+article.search-modal h4 {
+    font-weight: bold;
+    color: var(--text-color);
+}
+article.search-modal:hover {
+    background: var(--card-bg) !important;
 }
 
 /* Images */
@@ -489,6 +502,9 @@ h4.section {
     overflow: hidden;
     white-space: nowrap;
 }
+.tag-teaser .miniteaser {
+    max-width: 180px;
+}
 .tag-teaser > a {
     display: block;
     position: relative;
@@ -539,6 +555,8 @@ h4.section {
     .tag-teaser .intro {
         align-self: center;
     }
+}
+@media (min-width: 1280px) {
 }
 
 .hero {
