@@ -21,9 +21,20 @@ title = 'Leit'
           </div>
         </div>
       </form>
-     <div class="search-results mt-4" id="results">
-       Javascript þarf að vera virkt til að hægt sé að leita.
-       </div>
+      <div class="search-results mt-4" id="results">
+       % if not site.search_backend:
+         <p class="admonition error">
+           Engin leitarvirkni er til staðar. Það þarf að stilla <code>site.search_backend</code>
+           í stilliskránni.
+         </p>
+       % else:
+         <noscript>
+           <p class="admonition warning">
+             Javascript þarf að vera virkt til að hægt sé að leita.
+           </p>
+         </noscript>
+       % endif
+      </div>
     </div>
   </section>
 </%block>
@@ -32,6 +43,17 @@ title = 'Leit'
 ${ parent.scripts() }
 <script src="${ 'js/search.js' | url }"></script>
 <script>
- do_search("${ site.search_backend or '' }");
+## Normally site.search_backend is a dict with 'dev', 'prod' and 'prod_origin'
+## keys, where 'dev' and 'prod' are URLs or paths (e.g. /_/bt/search/)
+## while 'prod_hostnames' is a list of domains which are regarded
+## as indicating that we're on a production host. During development,
+## a string value (instead of a dict) is OK.
+<% sb = site.search_backend or '' %>
+% if isinstance(sb, dict):
+  var search_is_prod = ${ to_json(sb['prod_hostnames']) }.includes(window.location.hostname);
+  do_search(search_is_prod ? "${ sb['prod'] }" : "${ sb['dev'] }");
+% elif site.search_backend:
+  do_search("${ site.search_backend or '' }");
+% endif
 </script>
 </%block>
