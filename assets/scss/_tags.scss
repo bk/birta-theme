@@ -1,0 +1,13 @@
+/* Pill-like tag link */
+a.tag {
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 var(--spacing);
+    opacity: .8;
+    border-radius: var(--border-radius-big);
+}
+a.tag:hover {
+    opacity: 1;
+}

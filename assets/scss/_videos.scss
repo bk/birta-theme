@@ -1,0 +1,12 @@
+/* Videos + Iframes */
+video, iframe {
+    width: 100%;
+    height: auto;
+    margin: var(--spacing) 0;
+    aspect-ratio: 16 / 9;
+    clear: both;
+}
+/* Older videos */
+.aspect-4-3 {
+    aspect-ratio: 4 / 3;
+}

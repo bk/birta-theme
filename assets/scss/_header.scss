@@ -1,0 +1,44 @@
+// Header
+
+header nav a, header nav [role="link"], header nav [role="dropdown"] {
+    color: var(--text);
+}
+header nav a.active,
+header nav [role="link"].active,
+header nav [role="dropdown"].active {
+    color: var(--text-vivid);
+    font-weight: bold;
+}
+header nav > ul {
+    padding-top: .125rem;
+}
+header nav [role="dropdown"] a:not(.active) {
+    font-weight: normal;
+}
+nav svg.feather {
+    height: 1em;
+    width: 1em;
+    display: inline-block;
+    position: relative;
+    top: .2em;
+}
+
+details[role="dropdown"] li a {
+    display: block;
+}
+
+nav .show-menu~.menu {
+    max-width: 290px;
+    background: var(--contrast-bg);
+    box-shadow: -7px 0 4px 2px #0002;
+}
+nav .show-menu~.menu h4 {
+    color: white;
+    font-weight: bold;
+}
+nav .show-menu:checked~label.burger {
+    background: rgba(17, 17, 17, 0.05);
+}
+nav .menu .menu-inner ul li {
+    padding-bottom: .25rem;
+}

@@ -1,0 +1,24 @@
+// Cards and card-like components
+
+/* More border-radius for article (teasers + lyrics sections) */
+main article {
+    border-radius: var(--border-radius-big);
+}
+main article > header {
+    background: transparent;
+}
+main article > header img {
+    border-top-left-radius: var(--border-radius-big);
+    border-top-right-radius: var(--border-radius-big);
+}
+/* Card hover mode */
+article:hover {
+    background: var(--card-bg-hover) !important;
+}
+article.search-modal h4 {
+    font-weight: bold;
+    color: var(--text-color);
+}
+article.search-modal:hover {
+    background: var(--card-bg) !important;
+}

@@ -1,0 +1,11 @@
+// Title + subtitle.
+// Title heading of page
+[role="main"] > h1:first-child {
+    /*
+    font-size: 3.75rem;
+    font-weight: 200;
+    */
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--heading-color);
+}

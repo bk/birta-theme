@@ -1,0 +1,45 @@
+// NOT ACTUALLY USED!
+/* Table of contents sidebar: */
+/* (1) Increased spacing */
+main.items-fixed {
+    --column-gap: calc(var(--spacing) * 3);
+}
+/* (2) Mobile/tablet hidden with trigger, desktop visible */
+article.toc {
+    display: none;
+}
+details.toc-trigger {
+    font-size: small;
+    border: none;
+}
+details.toc-trigger[open] + article.toc {
+    display: block;
+}
+/* (3) Position (in md and above) */
+@media (min-width: 960px) {
+    details.toc-trigger {
+        display: none;
+    }
+    article.toc {
+        display: block;
+        position: -webkit-sticky;
+        position: sticky;
+        top: var(--spacing);
+    }
+}
+
+/* (4) Link appearance */
+article.toc ul {
+    list-style: none;
+    margin: calc(var(--spacing) * 0.5) 0;
+    padding: 0;
+    line-height: 1.2;
+}
+article.toc li {
+    margin: 0;
+    padding: calc(var(--spacing) * 0.5) 0;
+    font-weight: normal;
+}
+article.toc > ul > li:first-child {
+    font-weight: bold;
+}
