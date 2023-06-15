@@ -1,0 +1,12 @@
+[Unit]
+Description=SQLite-based Search Service
+
+[Service]
+User=www-data
+Group=www-data
+ExecStart={{ venv_path }}/bin/python {{ search_server_home }}/search_server.py {{ search_server_config_json_file }}
+SyslogIdentifier=sqlite-search-server
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

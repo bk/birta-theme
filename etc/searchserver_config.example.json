@@ -1,0 +1,7 @@
+{
+    "host": "localhost",
+    "port": 7088,
+    "server": "paste",
+    "debug": true,
+    "bt": { "db": "htdocs/search.db", "required_fields": ["image", "tags"] }
+}
