@@ -51,7 +51,7 @@ ${ parent.scripts() }
 <% sb = site.search_backend or '' %>
 % if isinstance(sb, dict):
   var search_is_prod = ${ to_json(sb['prod_hostnames']) }.includes(window.location.hostname);
-  do_search(search_is_prod ? "${ sb['prod'] }" : "${ sb['dev'] }");
+  do_search(search_is_prod ? "${ sb['prod'] }" : `${ sb['dev'].replace('localhost:', '$'+'{window.location.hostname}:') }`);
 % elif site.search_backend:
   do_search("${ site.search_backend or '' }");
 % endif
