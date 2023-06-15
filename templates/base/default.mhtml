@@ -40,9 +40,11 @@ main_class = 'items-fixed items-max-md'
         % if site.avec_theme and site.avec_theme in ('default', 'one', 'gruvbox', 'pico', 'plain', 'selenized'):
         <link href="${ 'css/avec/avec.%s-theme.css' % site.avec_theme |url }" rel="stylesheet">
         % endif
+        <%block name="google_font">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        </%block>
         <link href="${ 'css/birta.css' | url }" rel="stylesheet">
         % for path in (site.extra_css or []):
         <link href="${ path | url }" rel="stylesheet">
