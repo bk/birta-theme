@@ -12,11 +12,11 @@
       <a href="${ nav_item.url | url }" class="${ 'active' if nav_item.contains_url(current_url, url, best=True)  else '' }">${ nav_item.title }</a>
     </li>
   % else:
-    <li>
-      ${ nav_item.title }:
+    <li class="${ 'active' if nav_item.contains_url(current_url, url, best=False) else '' }">
+      <span>${ nav_item.title }:</span>
       <ul>
         % for it in nav_item:
-          ${ nav_sub(it) }
+          ${ nav_sub(it, current_url) }
         % endfor
       </ul>
     </li>
