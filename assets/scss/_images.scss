@@ -1,55 +1,65 @@
-/* Images */
+// IMAGES
+
 [role="main"] .mdcontent img {
     border-radius: var(--border-radius);
 }
+
 figure {
     display: table;
     margin: var(--spacing) auto;
     position: relative;
+    img {
+        display: block;
+    }
+    figcaption {
+        display: table-caption;
+        caption-side: bottom;
+        width: 100%;
+        text-align: left;
+        font-size: smaller;
+        padding: var(--spacing);
+        background: #0000000c;
+        p {
+            margin: 0;
+        }
+    }
+    @media (min-width: 960px) {
+        &:not(.pdf-img) {
+            figcaption {
+                position: absolute;
+                bottom: 0;
+                margin-bottom: 0;
+                color: white;
+                background: #00000088;
+                visibility: hidden;
+                opacity: 0;
+                transition: visibility 0s, opacity 1s linear;
+            }
+        }
+        &:hover {
+            figcaption {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    }
 }
-figure img {
-    display: block;
-}
+
+// Images representing linked pdf files
+
 figure.pdf-img img, img.pdf-img {
     background: white;
     padding: 1rem;
     max-width: 320px;
 }
-figcaption p {
-    margin: 0;
-}
-figcaption {
-    display: table-caption;
-    caption-side: bottom;
-    width: 100%;
-    text-align: left;
-    font-size: smaller;
-    padding: var(--spacing);
-    background: #0000000c;
-}
-@media (min-width: 960px) {
-    figure:not(.pdf-img) figcaption {
-        position: absolute;
-        bottom: 0;
-        margin-bottom: 0;
-        color: white;
-        background: #00000088;
-        visibility: hidden;
-        opacity: 0;
-        transition: visibility 0s, opacity 1s linear;
-    }
-    figure:hover figcaption {
-        visibility: visible;
-        opacity: 1;
-    }
-}
-.grid figure {
-    align-self: start;
-}
+
+// Alignment classes
+
 .imgalign-center {
     margin: 1em auto;
     text-align: center;
 }
+
 @media (min-width: 768px) {
     /* Image floats */
     .imgalign-right {
@@ -64,32 +74,34 @@ figcaption {
     }
 }
 
-/* Image grid */
+// Image grid kind of thing
+
 .galleri, .gallery {
     margin: calc(var(--spacing) * 3) auto;
     text-align: center;
-}
-@media (min-width: 768px) {
-    .galleri, .gallery {
+    @media (min-width: 768px) {
         display: flex;
         gap: 20px;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: start;
+        img {
+            max-width: 345px;
+            margin: 0;
+        }
+        figure {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
     }
-    .galleri img, .gallery img {
-        max-width: 345px;
-        margin: 0;
-    }
-    .galleri figure {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-}
-@media (min-width: 960px) {
-    .gallery img, .galleri img {
-        max-width: 445px;
+    @media (min-width: 960px) {
+        img {
+            max-width: 445px;
+        }
     }
 }
 
+.grid figure {
+    align-self: start;
+}

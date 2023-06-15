@@ -1,21 +1,33 @@
 // Basic settings: font size, links, headings
 
+// FONT SIZE:
+
 body {
-    --font-size: 1.3125em;
+    --font-size: 1.3125rem;
 }
 
-.borad {
-    border-radius: var(--border-radius-big);
+// Fix text size in buttons (NOTE: Should the Avec setting be changed?)
+button, [role="button"], input[type="submit"], input[type="reset"], input[type="button"] {
+    font-size: inherit;
 }
 
+// LINKS:
 
-/* Reverse Avec defaults wrt this */
+// Reverse Avec defaults
 a, [role="link"] {
     text-decoration: none;
 }
 a:hover, [role="link"]:hover {
     text-decoration: underline;
 }
+// Special kinds of links
+a[href*=".mp3"], a[href*=".m4a"] {
+    display: inline-block;
+    padding-left: 1.315em;
+    background: url(/img/icons/volume-2-blue.svg) left center no-repeat;
+}
+
+// HEADINGS:
 
 h1, h2, h3, h4 {
     font-weight: normal;
@@ -24,15 +36,3 @@ h1, h2, h3, h4 {
 h2 > a, h3 > a, h4 > a {
     color: var(--heading-color);
 }
-
-button, [role="button"], input[type="submit"], input[type="reset"], input[type="button"] {
-    font-size: inherit;
-}
-
-/* Special links */
-a[href*=".mp3"], a[href*=".m4a"] {
-    display: inline-block;
-    padding-left: 1.315em;
-    background: url(/img/icons/volume-2-blue.svg) left center no-repeat;
-}
-

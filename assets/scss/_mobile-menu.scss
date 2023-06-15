@@ -1,11 +1,32 @@
 // Mobile menu
-nav .menu .menu-inner ul {
-    list-style: none;
-    line-height: 1.5;
+//
+nav .show-menu~.menu {
+    max-width: 290px;
+    background: var(--contrast-bg);
+    box-shadow: -7px 0 4px 2px #0002;
+    h4 {
+        color: white;
+        font-weight: bold;
+    }
 }
-nav .menu .menu-inner ul {
-    padding-left: 1.5rem;
+
+nav .show-menu:checked~label.burger {
+    background: rgba(17, 17, 17, 0.05);
 }
-nav .menu .menu-inner > ul {
-    padding-left: 1rem;
+
+nav .menu .menu-inner ul li {
+    padding-bottom: .25rem;
+}
+nav .menu .menu-inner {
+    ul {
+        list-style: none;
+        line-height: 1.5;
+        padding-left: 1.5rem;
+        li.active > span {
+            font-weight: bold;
+        }
+    }
+    > ul {
+        padding-left: 1rem;
+    }
 }

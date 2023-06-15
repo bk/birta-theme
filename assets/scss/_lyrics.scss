@@ -1,4 +1,4 @@
-/* Lyrics are represented as <pre> */
+// Lyrics are represented as <pre>
 
 pre {
     background: var(--card-bg);
@@ -9,11 +9,20 @@ pre {
     white-space: pre-wrap;
     word-wrap: normal;
     display: table;
+    @media (min-width: 768px) {
+        padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+    }
+    code {
+        font-family: var(--sans-font);
+        font-size: inherit;
+        @media (min-width: 768px) {
+            padding-left: 30px;
+        }
+    }
 }
-pre code {
-    font-family: var(--sans-font);
-    font-size: inherit;
-}
+
+// Frames around an entire lyrics section, including heading and surrounding text
+
 article pre {
     background: none;
     border-radius: 0;
@@ -25,29 +34,22 @@ article.gitargrip pre code {
     font-size: 1.15rem;
 }
 
-@media (min-width: 768px) {
-    pre {
-        padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
-    }
-}
 
-/* Multicolumn lyrics */
-@media (min-width: 768px) {
-    article pre > code {
-        padding-left: 30px;
-    }
-    article.kolonner pre {
+// Multicolumn lyrics in tablet and desktop
+
+article.kolonner pre {
+    @media (min-width: 768px) {
         display: block;
+        > code {
+            column-count: 2;
+            column-gap: 40px;
+            column-rule: 2px solid #e5e5e5;
+            column-width: 274px;
+        }
     }
-    article.kolonner pre > code {
-        column-count: 2;
-        column-gap: 40px;
-        column-rule: 2px solid #e5e5e5;
-        column-width: 274px;
-    }
-}
-@media (min-width: 960px) {
-    article.kolonner pre > code {
-        column-width: 370px;
+    @media (min-width: 960px) {
+        > code {
+            column-width: 370px;
+        }
     }
 }

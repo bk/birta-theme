@@ -1,4 +1,4 @@
-/* Videos + Iframes */
+// Videos + Iframes
 video, iframe {
     width: 100%;
     height: auto;
@@ -6,7 +6,8 @@ video, iframe {
     aspect-ratio: 16 / 9;
     clear: both;
 }
-/* Older videos */
+
+// Older videos
 .aspect-4-3 {
     aspect-ratio: 4 / 3;
 }

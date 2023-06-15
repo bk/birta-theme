@@ -1,15 +1,15 @@
-h2.fp-section {
+h2.fp-section, h4.section {
+    font-weight: bold;
     text-transform: uppercase;
+}
+h2.fp-section {
     font-size: var(--h6-size);
     letter-spacing: 1px;
-    font-weight: bold;
     margin-top: 2em;
     margin-bottom: 0;
 }
 h4.section {
     font-size: 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
     color: var(--text-light);
 }
 

@@ -1,6 +1,12 @@
-/* Clear to push down after floats */
+// Clear to push down after floats
 .clear {
     width: 100%;
     clear: both;
 }
 
+// Most things are more rounded than the default avec setting,
+// so let's override .borad for consistency.
+
+.borad {
+    border-radius: var(--border-radius-big);
+}

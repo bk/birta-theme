@@ -6,15 +6,13 @@ blockquote {
     margin-left: var(--spacing);
     border: none;
     min-height: 2.30769230769231rem;
-}
-blockquote > p:first-child {
-    margin-top: 0;
-}
-blockquote > p:last-child {
-    margin-bottom: 0;
-}
-@media (max-width: 767px) {
-    blockquote {
+    > p:first-child {
+        margin-top: 0;
+    }
+    > p:last-child {
+        margin-bottom: 0;
+    }
+    @media (max-width: 767px) {
         font-size: .9524em;
     }
 }

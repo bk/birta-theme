@@ -1,28 +1,26 @@
+// Hero image
+
 .hero {
     position: relative;
-}
-.hero h1, .hero h2 {
-    text-shadow: black 1px 0 7px;
-}
-.hero h1 {
-    color: white;
-    font-weight: bold;
-    font-size: 2.8rem;
-}
-@media (min-width: 768px) {
-    .hero h1 {
-        font-size: 4.5rem;
+    h1, h2 {
+        text-shadow: black 1px 0 7px;
     }
-}
-@media (min-width: 960px) {
-    .hero h1 {
-        font-size: 5.2rem;
+    h1 {
+        color: white;
+        font-weight: bold;
+        font-size: 2.8rem;
+        @media (min-width: 768px) {
+            font-size: 4.5rem;
+        }
+        @media (min-width: 960px) {
+            font-size: 5.2rem;
+        }
     }
-}
-.hero h2 {
-    color: #e5e5e5;
-    position: absolute;
-    bottom: 1rem;
-    width: 100%;
-    text-align: center;
+    h2 {
+        color: #e5e5e5;
+        position: absolute;
+        bottom: 1rem;
+        width: 100%;
+        text-align: center;
+    }
 }

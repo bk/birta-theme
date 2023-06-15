@@ -1,14 +1,13 @@
 // Footer
 
-footer a {
-    text-decoration: none;
-}
-footer .tagline {
-    font-size: larger;
-}
-footer .repo {
-    line-height: 1.2;
-}
-footer .copyright {
-    font-size: smaller;
+footer {
+    a {
+        text-decoration: none;
+    }
+    .tagline {
+        font-size: larger;
+    }
+    .copyright {
+        font-size: smaller;
+    }
 }

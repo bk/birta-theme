@@ -2,11 +2,11 @@
     --sans-font: Jost, "Avenir Next", Avenir, sans-serif;
     --main-font: var(--sans-font);
     --heading-color: #e64708;
-    --dark-accent-bg: #548289; /*#5a9dad; */
-    /* --heading-font: "Lucida Grande", Corbel, "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif; */
+    --dark-accent-bg: #548289; // extra named colour
     --heading-font: var(--sans-font);
-    --border-radius-big: calc(var(--border-radius) * 3);
+    --border-radius-big: calc(var(--border-radius) * 3); // extra border-radius var
 }
+
 body.light-theme {
     --bg: #ddeeff99;
     --accent-bg: #c4e2e9;
@@ -14,11 +14,13 @@ body.light-theme {
     --card-bg-hover: #fff5e6;
     --button-text: var(--card-bg);
 }
+
 .dark-theme, .light-theme .reverse-theme {
     --bg: #1a3943; /* #143239; #012743; */
     --contrast-bg: #26464f; /* #1a3943; #113743; */
     --accent-bg: #234246; /* #1a3943; #113743; */
 }
+
 .bg-dark-accent {
     background: var(--dark-accent-bg);
 }

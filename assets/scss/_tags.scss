@@ -1,4 +1,5 @@
-/* Pill-like tag link */
+// Pill-like tag link
+
 a.tag {
     background: var(--accent);
     color: white;
@@ -7,7 +8,7 @@ a.tag {
     padding: 0 var(--spacing);
     opacity: .8;
     border-radius: var(--border-radius-big);
-}
-a.tag:hover {
-    opacity: 1;
+    &:hover {
+        opacity: 1;
+    }
 }
