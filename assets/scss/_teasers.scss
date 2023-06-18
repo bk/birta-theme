@@ -128,3 +128,13 @@
         }
     }
 }
+@media (min-width: 1280px) {
+    .round-teaser > .intro {
+        > h3 {
+            font-size: 1.8rem;
+        }
+        > p {
+            font-size: 1.6rem;
+        }
+    }
+}
