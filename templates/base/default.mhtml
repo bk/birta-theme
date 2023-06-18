@@ -1,4 +1,6 @@
 <%!
+from wmk_theme_autoload import get_opengraph
+
 description = ''
 title = 'Forsíða'
 header_class = 'reverse-theme'
@@ -15,6 +17,17 @@ main_class = 'items-fixed items-max-md'
       <%block name="site_meta">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <%block name="opengraph">
+        % if page and CONTENT and RAW_CONTENT:
+          <% fb_meta = get_opengraph(page, site, CONTENT, RAW_CONTENT, SELF_URL) %>
+          % if fb_meta:
+            ## image, title, description, type, url
+            % for k in fb_meta:
+              <meta property="og:${ k }" content="${ fb_meta[k].replace('"', '&quot;') }">
+            % endfor
+          % endif
+        % endif
+        </%block>
         <%block name="meta_description">
         % if page.description or self.attr.description:
           <meta name="description" content="${ page.description or self.attr.description }">

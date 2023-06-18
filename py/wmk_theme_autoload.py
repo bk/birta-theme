@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import re
+import os
 import datetime
 import markdown
 from wmk_utils import slugify
@@ -251,9 +252,35 @@ def get_summary(it, max_length=150):
         summary = re.sub(r'\s\S+\s*$', '…', summary)
     return summary
 
+
+def get_opengraph(page, site, content, doc, self_url):
+    """
+    Sets basic OpenGraph attributes: image, title, description, url.
+    NOTE: url and image attribute require site.home_url to be set.
+    """
+    self = {'data': {'page': page}, 'doc': doc}
+    ret = {'title': page.title, 'type': 'article'}
+    description = get_summary(self, 200)
+    if description:
+        ret['description'] = description
+    if not site.home_url:
+        return ret
+    ret['url'] = site.home_url.strip('/') + self_url.replace('/index.html', '/')
+    img = get_main_img(self, fallback=False)
+    if img:
+        if img.startswith('mynd/'):
+            img = '/' + img
+        if not img.startswith('/'):
+            img = os.path.normpath(os.path.join(os.path.dirname(self_url), img))
+        img = site.home_url.strip('/') + img
+        ret['image'] = img
+    return ret
+
+
 autoload = {
     'ikiwiki2shortcode': ikiwiki2shortcode,
     'lyrics_section_detect': lyrics_section_detect,
     'get_main_img': get_main_img,
     'get_summary': get_summary,
+    'get_opengraph': get_opengraph,
 }
