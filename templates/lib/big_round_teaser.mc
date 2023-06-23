@@ -17,6 +17,6 @@ pg = item['data']['page']
   </a>
   <div class="intro">
     <h3 class="mt-0"><a href="${url}" class="plain">${ pg.title }</a></h3>
-    <p class="m-0">${ get_summary(item, 150) } <a href="${ url }">Meira&nbsp;»</a>
+    <p class="m-0">${ get_summary(item, 200) } <a href="${ url }">Meira&nbsp;»</a>
   </div>
 </div>
