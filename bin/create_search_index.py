@@ -68,7 +68,8 @@ def create_search_index (cur, content):
         image = scale_image(image, url)
         if image and not image.startswith('/'):
             image = os.path.join(os.path.split(url)[0], image)
-        body = clean_html(it['rendered'])
+        #body = clean_html(it['rendered'])
+        body = clean_markdown(it['doc'])
         summary = page.get('summary') or get_summary(body)
         date = page.get('date') or page.get('created_date')
         tags = get_tags(page)
@@ -141,6 +142,31 @@ def clean_html(s):
     s = re.sub(r'<[^>]+>', ' ', s)
     s = re.sub(r'\s+', ' ', s)
     return s.strip()
+
+
+def extract_caption(match):
+    if 'caption=' in match.group(0) or 'alt=' in match.group(0):
+        found = re.search(r' (?:caption|alt)="(.*?)"', match.group(0))
+        if found:
+            return ' ' + found.group(1) + ' '
+    return ''
+
+
+def clean_markdown(s):
+    s = s.replace('*', '')
+    s = s.replace('#', '')
+    s = s.replace('\r\n', '\n')
+    s = s.replace('\n', ' ')
+    # directives
+    s = re.sub(r'\[\[\!.*?\]\]', extract_caption, s)
+    # wikilinks
+    s = re.sub(r'\[\[[^\]]+\|([^\]]+)\]\]', r' \1 ', s)
+    s = s.replace('[[', ' ')
+    s = s.replace(']]', ' ')
+    # markdown links
+    s = re.sub(r'\[([^\]]+)\]\(.*?\)', r' \1 ', s)
+    s = re.sub(r'\[([^\]]+)\]', r' \1 ', s)
+    return clean_html(s)
 
 
 def get_summary(s):
