@@ -118,7 +118,10 @@ def _iki2linkto(m):
     else:
         pat = m.group(1) + m.group(2)
         label = pat
-    if re.search(r'\.\w{2,5}$', pat):
+    if pat.startswith(('http:', 'https:')):
+        # External link
+        return '<a href="%s" class="iki-conv external">%s</a>' % (pat, label)
+    elif re.search(r'\.\w{2,5}$', pat):
         # ordinary link to a file with an extension
         if '/' in pat and not pat.startswith('/'):
             pat = '/' + pat
