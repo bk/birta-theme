@@ -49,7 +49,7 @@ main_class = 'items-fixed items-max-md'
       </%block>
 
       <%block name="styles">
-        <link href="${ 'css/avec/avec.min.css' | url }" rel="stylesheet">
+        <link href="${ 'css/avec/avec.min.css' | url, fingerprint }" rel="stylesheet">
         % if site.avec_theme and site.avec_theme in ('default', 'one', 'gruvbox', 'pico', 'plain', 'selenized'):
         <link href="${ 'css/avec/avec.%s-theme.css' % site.avec_theme |url }" rel="stylesheet">
         % endif
@@ -58,12 +58,12 @@ main_class = 'items-fixed items-max-md'
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
         </%block>
-        <link href="${ 'css/birta.css' | url }" rel="stylesheet">
+        <link href="${ 'css/birta.css' | url, fingerprint }" rel="stylesheet">
         % for path in (site.extra_css or []):
-        <link href="${ path | url }" rel="stylesheet">
+        <link href="${ path | url, fingerprint }" rel="stylesheet">
         % endfor
         % for path in (page.extra_css or []):
-        <link href="${ path | url }" rel="stylesheet">
+        <link href="${ path | url, fingerprint }" rel="stylesheet">
         % endfor
       </%block>
 
@@ -202,7 +202,7 @@ main_class = 'items-fixed items-max-md'
     <script>
       var base_url = "${ '/' | url }";
     </script>
-    <script src="${ 'js/birta.js' | url }" defer></script>
+    <script src="${ 'js/birta.js' | url, fingerprint }" defer></script>
     % for path in site.extra_javascript:
       <script src="${ path | url }" defer></script>
     % endfor
