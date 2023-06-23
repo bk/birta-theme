@@ -30,13 +30,13 @@ if tag_page:
             webroot=tag_page['data']['WEBROOT'],
             self_url=tag_page['url']))
 if not img:
-    orig_img = get_main_img(tagged[3])
+    orig_img = get_main_img(tagged[4])
     if orig_img.startswith('mynd/'):
         orig_img = '/' + orig_img
     img = capture(lambda: resiz.body(
             orig_img, width=800, height=800,
-            webroot=tagged[3]['data']['WEBROOT'],
-            self_url=tagged[3]['url']))
+            webroot=tagged[4]['data']['WEBROOT'],
+            self_url=tagged[4]['url']))
 tag_url = tag_page['url'] if tag_page else '/flokkar/' + slugify(tagname) + '/'
 %>
 <div class="round-teaser tag-teaser ${ css_class }">
