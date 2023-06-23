@@ -4,7 +4,7 @@ site:
   author: Baldur Kristinsson
   leading_path: ''
   base_url: ''
-  avec_theme: default
+  #avec_theme: default
   no_sitemap: false
   auto_title_h1: true
   tagline: Verði ljós
