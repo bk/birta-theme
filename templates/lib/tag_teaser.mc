@@ -69,7 +69,7 @@ cls = [
     ' seen-001', ]
 %>
   <div class="miniteaser${ cls[i] }">
-    <a href="${ url }"><img src="${img}?o=${ orig_img |u }" alt="${ title |h }" class="borad"></a>
+    <a href="${ url }"><img src="${img}?o=${ orig_img |u }" alt="${ title |h }" loading="lazy" class="borad"></a>
     <p><a href="${ url }" class="text plain">${ title }</a></p>
   </div>
 </%def>
