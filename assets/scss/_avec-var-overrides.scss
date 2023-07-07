@@ -1,7 +1,7 @@
 :root {
     --sans-font: Jost, "Avenir Next", Avenir, sans-serif;
     --main-font: var(--sans-font);
-    --heading-color: #e64708;
+    --heading-color: #c03b07; // previously: #e64708;
     --dark-accent-bg: #548289; // extra named colour
     --heading-font: var(--sans-font);
     --border-radius-big: calc(var(--border-radius) * 3); // extra border-radius var
@@ -16,9 +16,9 @@ body.light-theme {
 }
 
 .dark-theme, .light-theme .reverse-theme {
-    --bg: #1a3943; /* #143239; #012743; */
-    --contrast-bg: #26464f; /* #1a3943; #113743; */
-    --accent-bg: #234246; /* #1a3943; #113743; */
+    --bg: #3a4b5c; /* #1a3943; /* #143239; #012743; */
+    --contrast-bg: #2a3b4c; /* #1a3943; #113743; */
+    --accent-bg: #243546; /* #1a3943; #113743; */
 }
 
 .bg-dark-accent {
