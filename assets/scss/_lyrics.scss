@@ -39,7 +39,7 @@ article.gitargrip pre code {
 
 article.kolonner pre {
     @media (min-width: 768px) {
-        display: block;
+        display: flex; // better in Safari than 'block'
         > code {
             column-count: 2;
             column-gap: 40px;
@@ -49,6 +49,18 @@ article.kolonner pre {
     }
     @media (min-width: 960px) {
         > code {
+            column-width: 370px;
+        }
+    }
+}
+
+article.kolonner-md pre {
+    @media (min-width: 960px) {
+        display: flex; // better in Safari than 'block'
+        > code {
+            column-count: 2;
+            column-gap: 40px;
+            column-rule: 2px solid #e5e5e5;
             column-width: 370px;
         }
     }
