@@ -5,14 +5,14 @@ header nav {
     > ul {
         padding-top: .125rem;
     }
-    a, [role="link"], [role="dropdown"] {
+    a, [role="link"], [role="menu"] {
         color: var(--text);
         &.active {
             color: var(--text-vivid);
             font-weight: bold;
         }
     }
-    [role="dropdown"] a:not(.active) {
+    [role="menu"] a:not(.active) {
         font-weight: normal;
     }
 }
@@ -25,6 +25,6 @@ nav svg.feather {
     top: .2em;
 }
 
-details[role="dropdown"] li a {
+details[role="menu"] li a {
     display: block;
 }
