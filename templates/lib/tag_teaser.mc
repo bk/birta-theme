@@ -1,6 +1,7 @@
-<%page args="tagname, css_class='', exclude=None" />
+<%page args="tagname, css_class='', exclude=None, chain_exclude=False, by_date=False" />
 <%namespace name="resiz" file="/shortcodes/resize_image.mc" />
 <%!
+import random
 from wmk_theme_autoload import get_main_img
 from wmk import slugify
 %>
@@ -11,9 +12,13 @@ if not tagged:
 if tagged:
     if exclude:
         tagged = tagged.page_match(exclude, inverse=True)
-    tagged = tagged.sorted_by_date()[:5]
+    if by_date:
+        tagged = tagged.sorted_by_date()[:5]
+    else:
+        random.shuffle(tagged)
+        tagged = tagged[:5]
     # Help to prevent duplicates in subsequent calls to tag_teaser
-    if exclude and 'id' in exclude and isinstance(exclude['id'], list):
+    if chain_exclude and exclude and 'id' in exclude and isinstance(exclude['id'], list):
         for it in tagged[:4]:
             exclude['id'].append(it['data']['page'].id)
 if not len(tagged) == 5:
