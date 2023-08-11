@@ -8,13 +8,13 @@
   Navigation items, possibly nested.
 </%doc>
   % if not nav_item.children:
-    <li>
+    <li role="menuitem">
       <a href="${ nav_item.url | url }" class="${ 'active' if nav_item.contains_url(current_url, url, best=True)  else '' }">${ nav_item.title }</a>
     </li>
   % else:
-    <li class="${ 'active' if nav_item.contains_url(current_url, url, best=False) else '' }">
+    <li role="menuitem" class="${ 'active' if nav_item.contains_url(current_url, url, best=False) else '' }">
       <span>${ nav_item.title }:</span>
-      <ul>
+      <ul role="group">
         % for it in nav_item:
           ${ nav_sub(it, current_url) }
         % endfor

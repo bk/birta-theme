@@ -96,9 +96,9 @@ main_class = 'items-fixed items-max-md'
                     ## have it already in navbar-brand above.
                     <% continue %>
                   % elif nav_item.children:
-                    <li><details role="dropdown" class="${ 'active' if nav_item.contains_url(SELF_URL, url, best=False) else '' }">
-                      <summary>${ nav_item.title }</summary>
-                      <ul>
+                    <li><details role="menu" class="${ 'active' if nav_item.contains_url(SELF_URL, url, best=False) else '' }">
+                      <summary role="group">${ nav_item.title }</summary>
+                      <ul role="group">
                         % for it in nav_item:
                           ## Note: possibly nested
                           ${ nav_sub(it, SELF_URL) }
@@ -106,7 +106,7 @@ main_class = 'items-fixed items-max-md'
                       </ul>
                     </details></li>
                   % else:
-                    <li><a href="${ nav_item.url | url }" class="${ ' active' if nav_item.contains_url(SELF_URL, url, best=True) else '' }">${ nav_item.title }</a></li>
+                    <li role="menuitem"><a href="${ nav_item.url | url }" class="${ ' active' if nav_item.contains_url(SELF_URL, url, best=True) else '' }">${ nav_item.title }</a></li>
                   % endif
                 % endfor
               </ul>
