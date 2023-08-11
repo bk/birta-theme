@@ -1,4 +1,4 @@
-<%page args="item, css_class=''" />
+<%page args="item, css_class='', lazy=True" />
 <%namespace name="resiz" file="/shortcodes/resize_image.mc" />
 <%! from wmk_theme_autoload import get_main_img, get_summary %>
 <%
@@ -13,7 +13,7 @@ pg = item['data']['page']
 %>
 <div class="${ css_class } round-teaser">
   <a href="${url}">
-    <img src="${ img }"?o=${ orig_img |u }" loading="lazy" alt="${pg.title |h}" width="680" height="680" class="borad-round">
+    <img src="${ img }"?o=${ orig_img |u }"${ ' loading="lazy"' if lazy else '' |n} alt="${pg.title |h}" width="680" height="680" class="borad-round">
   </a>
   <div class="intro">
     <h3 class="mt-0"><a href="${url}" class="plain">${ pg.title }</a></h3>
