@@ -2,7 +2,7 @@
 
 // We want at most one open dropdown menu at a time
 document.addEventListener('click', function(e) {
-  let open_dd = document.querySelector('details[role="dropdown"][open]');
+  let open_dd = document.querySelector('details[role="menu"][open]');
   if (open_dd && !open_dd.contains(e.target)) {
     open_dd.removeAttribute('open');
   }
