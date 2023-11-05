@@ -22,8 +22,8 @@ class EmphasizedInPrePostprocess(Postprocessor):
             s = m.group(0)
             if not '*' in s:
                 return s
-            s = re.sub(r'\*\*(.*)?\*\*', r'<strong>\1</strong>', s)
-            return re.sub(r'\*(.*)\*', r'<em>\1</em>', s)
+            s = re.sub(r'\*\*([^*]*)\*\*', r'<strong>\1</strong>', s)
+            return re.sub(r'\*([^*]*)\*', r'<em>\1</em>', s)
         if '<pre>' in text:
             text = re.sub(r'<pre>.*?</pre>', inside_codeblock, text, flags=re.S)
         return text
