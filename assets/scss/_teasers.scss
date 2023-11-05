@@ -154,7 +154,17 @@
             }
         }
         &.tag-teaser {
-            .intro {
+            > a {
+                height: 17rem;
+                width: 17rem;
+                top: .5rem;
+                > span {
+                    top: 6.5rem;
+                    border-radius: 1rem;
+                }
+            }
+            > .intro {
+                margin-left: 18rem;
                 align-self: center;
             }
         }
