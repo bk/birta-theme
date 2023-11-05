@@ -1,4 +1,4 @@
-<%page args="src, align='center', size='650x', alt='', caption=None, sticky_width=True, rz_op='fit', img_link=None, link_target='_blank'" />
+<%page args="src, align='center', size='650x', alt='', caption=None, sticky_width=True, rz_op='fit', img_link=None, link_target='_blank', rz_focus=None" />
 <%!
 import os
 from urllib.parse import quote_plus
@@ -34,7 +34,7 @@ if size and 'x' in size:
 if not src.startswith(('/', 'http:', 'https:')):
     src = os.path.normpath(os.path.join(os.path.dirname(SELF_URL), src))
 if width or height:
-    resize_opt = {'path': src, 'width': width, 'height': height, 'op': rz_op}
+    resize_opt = {'path': src, 'width': width, 'height': height, 'op': rz_op, 'focal_point': rz_focus}
     resize_kwargs = context.kwargs
     resize_kwargs.update(resize_opt)
     src = capture(lambda: resiz.body(**resize_kwargs))
