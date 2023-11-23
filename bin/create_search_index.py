@@ -56,9 +56,15 @@ def create_search_index (cur, content):
     for it in content:
         data = it['data']
         page = data.get('page')
-        if data.get('is_draft') or data.get('draft') or page.get('do_not_render'):
-            contiue
+        skip_page = False
+        for attr in ('is_draft', 'draft', 'do_not_render', 'exclude_from_search'):
+            if page.get(attr):
+                skip_page = True
+                break
         url = it['data']['SELF_URL']
+        if skip_page:
+            # print(f"INFO: Omitting {url} from search index")
+            continue
         if url in seen:
             print(f"WARNING: URL {url} seen again - skipped!")
             continue
