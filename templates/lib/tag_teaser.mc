@@ -6,7 +6,8 @@ from wmk_theme_autoload import get_main_img
 from wmk import slugify
 %>
 <%
-tagged = MDCONTENT.has_tag(tagname)
+tagged = MDCONTENT.has_tag(tagname).page_match(
+    {'attrs': {'tag_teaser_exclude': True}}, inverse=True)
 if not tagged:
     return ''
 if tagged:
