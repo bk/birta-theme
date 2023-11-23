@@ -1,5 +1,5 @@
 <%doc>pagelist handler, called via iki_inline</%doc>
-<%page args="pagelist, css_class='pagelist-summary', no_wrap=False, no_intro=False" />
+<%page args="pagelist, css_class='pagelist-summary', no_wrap=False, no_intro=False, grid_css_class='grid-sm c2-sm c3-md'" />
 <%namespace name="resiz" file="/shortcodes/resize_image.mc" />
 <%! from wmk_theme_autoload import get_main_img, get_summary %>
 <%
@@ -7,7 +7,7 @@ if not pagelist:
     return ''
 %>
 % if not no_wrap:
-<div class="${ css_class } grid-sm c2-sm c3-md mb-4">
+<div class="${ css_class } ${ grid_css_class } mb-4">
 % endif
   % for it in pagelist:
     ${ _item(it) }
