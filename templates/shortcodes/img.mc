@@ -12,7 +12,7 @@ Shortcode to handle translated IkiWiki-style [[!img...]] directives.
 sticky_widths = (
     {'from': 500, 'to': 1279, 'scale_to': 1024},
     {'from': 150, 'to': 300, 'scale_to': 300},
-    {'from': 301, 'to': 499, 'scale_to': 512},
+    {'from': 301, 'to': 512, 'scale_to': 512},
 )
 orig_src = src
 if src.startswith('mynd/'):
