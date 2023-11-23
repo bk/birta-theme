@@ -2,6 +2,7 @@
 
 import json
 import sys
+import re
 import sqlite3
 from bottle import (run, request, response, post, abort)
 
@@ -18,6 +19,9 @@ def search(sitekey):
     if not query:
         print("GOT ONLY", dict(request.forms))
         abort(403, 'Query needed')
+    # Words joined by hyphen cause an error: no such column
+    query = re.sub(r'(\S)-', r'\1 ', query)
+    # TODO: further normalization/sanitation of query may be needed
     db = sqlite3.connect(conf['db'])
     db.row_factory = sqlite3.Row
     ret = run_query(db, query,
