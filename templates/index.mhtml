@@ -2,6 +2,7 @@
 <%!
 main_class = ''
 title = "Frontpage"
+page_name = 'frontpage'
 %>
 
 <%block name="content">

@@ -2,6 +2,7 @@
 <%!
 main_class = ''
 title = 'Leit'
+page_name = 'search'
 %>
 
 <%block name="content">

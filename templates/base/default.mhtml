@@ -8,6 +8,7 @@ footer_class = 'reverse-theme'
 nav_class = ''
 body_class = ''
 main_class = 'items-fixed items-max-md'
+page_name = 'default'
 %>\
 <%namespace file="comp/utils.mc" import="nav_sub, tags, maybe_auto_title, dates, maybe_bottom_teasers" />\
 <%namespace file="/lib/icons.mc" name="icons" />
@@ -142,7 +143,8 @@ main_class = 'items-fixed items-max-md'
         </div>
       </header>
     </%block>
-    <main class="${ page.main_class or self.attr.main_class }${ ' pb-0' if page else '' }">
+    <% main_class_override = (site.page_settings.get(self.attr.page_name) or {}).get('main_class') %>
+    <main class="${ page.main_class or main_class_override or self.attr.main_class }${ ' pb-0' if page else '' }">
       <%block name="content">
         % if page:
           <section role="main">
