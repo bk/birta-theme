@@ -90,6 +90,11 @@ figure.pdf-img img, img.pdf-img {
             max-width: 345px;
             margin: 0;
         }
+        &.gal3 {
+            img {
+                max-width: 223px;
+            }
+        }
         figure {
             margin-top: 0;
             margin-bottom: 0;
@@ -98,6 +103,11 @@ figure.pdf-img img, img.pdf-img {
     @media (min-width: 960px) {
         img {
             max-width: 445px;
+        }
+        &.gal3 {
+            img {
+                max-width: 290px;
+            }
         }
     }
 }
