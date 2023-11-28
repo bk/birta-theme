@@ -6,4 +6,11 @@
             margin-top: 0;
         }
     }
+    &.narrow {
+        columns: 10rem auto;
+        padding-top: 1em;
+        > ol, > ul, > p {
+            margin-top: 0;
+        }
+    }
 }
