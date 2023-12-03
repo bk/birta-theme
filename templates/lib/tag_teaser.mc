@@ -1,4 +1,4 @@
-<%page args="tagname, css_class='', exclude=None, chain_exclude=False, by_date=False" />
+<%page args="tagname, css_class='', exclude=None, chain_exclude=False, by_date=False, with_subtitle=False" />
 <%namespace name="resiz" file="/shortcodes/resize_image.mc" />
 <%!
 import random
@@ -54,13 +54,13 @@ tag_url = tag_page['url'] if tag_page else '/flokkar/' + slugify(tagname) + '/'
     <h4 class="section mt-0 mb-1">Sýnishorn</h4>
     <div class="grid-xs c2 c3-md c4-lg">
       % for i, it in enumerate(tagged[:4]):
-        ${ _miniteaser(it, i) }
+        ${ _miniteaser(it, i, with_subtitle=with_subtitle) }
       % endfor
     </div>
   </div>
 </div>
 
-<%def name="_miniteaser(it, i)">
+<%def name="_miniteaser(it, i, with_subtitle=False)">
 <%
 url = it['url']
 title = it['data']['page']['title']
@@ -73,9 +73,15 @@ cls = [
     '',
     ' seen-011 hidden-sm',
     ' seen-001', ]
+subtitle = None
+if with_subtitle:
+    subtitle = it['data']['page'].get('subtitle', None)
 %>
-  <div class="miniteaser${ cls[i] }">
+  <div class="miniteaser${ ' with-subtitle ' if subtitle else '' }${ cls[i] }">
     <a href="${ url }"><img src="${img}?o=${ orig_img |u }" alt="${ title |h }" loading="lazy" class="borad"></a>
     <p><a href="${ url }" class="text plain">${ title }</a></p>
+    % if subtitle:
+      <div class="subtitle">${ subtitle }</div>
+    % endif
   </div>
 </%def>

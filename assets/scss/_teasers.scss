@@ -94,6 +94,24 @@
                 overflow: hidden;
                 white-space: nowrap;
             }
+            &.with-subtitle {
+                position: relative;
+                .subtitle {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    padding: .15rem .75rem;
+                    line-height: 1.2;
+                    width: 100%;
+                    font-size: .7em;
+                    overflow: hidden;
+                    color: white;
+                    background: #00000055;
+                    text-align: center;
+                    border-top-left-radius: var(--border-radius-big);
+                    border-top-right-radius: var(--border-radius-big);
+                }
+            }
         }
     }
     &.round-teaser-small {
@@ -178,5 +196,23 @@
         > p {
             font-size: 1.6rem;
         }
+    }
+}
+
+article > header.with-subtitle {
+    position: relative;
+    .subtitle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: .2rem .5rem;
+        width: 100%;
+        font-size: .8em;
+        overflow: hidden;
+        text-align: center;
+        color: white;
+        background: #00000055;
+        border-top-left-radius: var(--border-radius);
+        border-top-right-radius: var(--border-radius);
     }
 }

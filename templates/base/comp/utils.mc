@@ -47,10 +47,14 @@
 <%
 if not site.auto_title_h1 or (page and page.no_auto_title_h1):
     return ''
+subtitle = page.subtitle if page and page.subtitle else None
 %>
   % if page and page.title and CONTENT and not CONTENT.startswith('<h1'):
       <% page._added_auto_title = page.title %>
       <h1 id="auto-${ page.title | slugify }">${ page.title }</h1>
+      % if subtitle:
+        <p class="subtitle">${ subtitle }</p>
+      % endif
   % endif
 </%def>
 

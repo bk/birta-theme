@@ -1,7 +1,17 @@
 // Title + subtitle.
 // Title heading of page
-[role="main"] > h1:first-child {
-    font-size: 2.2rem;
-    text-transform: uppercase;
-    border-bottom: 2px solid var(--heading-color);
+[role="main"] {
+    > h1:first-child {
+        font-size: 2.2rem;
+        text-transform: uppercase;
+        border-bottom: 2px solid var(--heading-color);
+    }
+    > p.subtitle {
+        color: var(--text-light);
+        text-transform: uppercase;
+        margin-top: 0;
+        font-weight: bold;
+        font-size: .9em;
+        letter-spacing: .06em;
+    }
 }
