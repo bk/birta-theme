@@ -71,7 +71,9 @@ page_name = 'default'
       <%block name="libs"></%block>
 
       <%block name="analytics">
-        ### TBD
+        % if site.analytics:
+          ${ site.analytics |n }
+        % endif
       </%block>
 
       <%block name="extrahead"></%block>
