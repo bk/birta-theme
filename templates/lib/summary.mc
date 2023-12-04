@@ -36,16 +36,16 @@ if not pagelist:
   %>
   <article>
     <header${ ' class="with-subtitle"' if subtitle else '' |n }>
-      <a href="${ url }">
+      <a href="${ url | cleanurl }">
         <img src="${ img }?o=${ orig_img |u }" loading="lazy" alt="${ pg.title |h }" width="512" height="320">
       </a>
       % if subtitle:
         <div class="subtitle">${ subtitle }</div>
       % endif
     </header>
-    <h4${ ' class="mt-0"' if no_intro else '' }><a href="${ url }" class="text">${ pg.title }</a></h4>
+    <h4${ ' class="mt-0"' if no_intro else '' }><a href="${ url | cleanurl }" class="text">${ pg.title }</a></h4>
     % if not no_intro:
-    <p class="smaller">${ get_summary(it) } <a href="${ url }">Meira&nbsp;»</a></p>
+      <p class="smaller">${ get_summary(it) } <a href="${ url | cleanurl }">Meira&nbsp;»</a></p>
     % endif
   </article>
 </%def>

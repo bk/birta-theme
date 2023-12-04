@@ -46,7 +46,7 @@ if not img:
 tag_url = tag_page['url'] if tag_page else '/flokkar/' + slugify(tagname) + '/'
 %>
 <div class="round-teaser tag-teaser ${ css_class }">
-  <a href="${tag_url}">
+  <a href="${ tag_url | cleanurl}">
     <span>${ tagname }<br><span class="smaller">Skoða flokkinn</span></span>
     <img src="${ img }"?o=${ orig_img |u }" loading="lazy" alt="${ tagname |h}" width="680" height="680" class="borad-round">
   </a>
@@ -78,8 +78,8 @@ if with_subtitle:
     subtitle = it['data']['page'].get('subtitle', None)
 %>
   <div class="miniteaser${ ' with-subtitle ' if subtitle else '' }${ cls[i] }">
-    <a href="${ url }"><img src="${img}?o=${ orig_img |u }" alt="${ title |h }" loading="lazy" class="borad"></a>
-    <p><a href="${ url }" class="text plain">${ title }</a></p>
+    <a href="${ url | cleanurl }"><img src="${img}?o=${ orig_img |u }" alt="${ title |h }" loading="lazy" class="borad"></a>
+    <p><a href="${ url | cleanurl }" class="text plain">${ title }</a></p>
     % if subtitle:
       <div class="subtitle">${ subtitle }</div>
     % endif
