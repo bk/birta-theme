@@ -1,0 +1,51 @@
+<%!
+import datetime
+from wmk_theme_autoload import get_main_img, get_summary
+xmldate = date_to_iso(sep='T', with_tz=True)
+%>\
+<%
+if not site.atom_feed:
+    return ''
+limit = site.atom_feed_length or 10
+default_atom_cond = {
+    'match_expr': {'has_tag': True},
+    'ordering': '-date',
+}
+atom_cond = site.atom_cond or default_atom_cond
+content = MDCONTENT.page_match(**atom_cond)
+exclude_attrs = ('is_draft', 'draft', 'do_not_render', 'exclude_from_search', 'no_sitemap')
+posts = []
+for it in content:
+    skip = False
+    page = it['data']['page']
+    for attr in (exclude_attrs):
+        if page.get(attr):
+            skip = True
+            break
+    if not skip:
+        posts.append(it)
+    if len(posts) == limit:
+        break
+%>\
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<%namespace name="default" file="base/default.mhtml" />
+ <title>${ site.title or site.name or '?' }</title>
+ <link href="${ site.home_url }/atom.xml" rel="self"/>
+ <link href="${ site.home_url }/"/>
+ <updated>${ datetime.datetime.now() |xmldate }</updated>
+ <id>${ site.home_url }/</id>
+ <author>
+   <name>${ site.author }</name>
+   <email>${ site.author_email or 'unknown' }</email>
+ </author>
+ % for post in posts:
+ <entry>
+   <title>${ post['data']['page'].title }</title>
+   <link href="${ site.home_url }${ post['url'] |cleanurl }"/>
+   <updated>${ post['data']['page'].pubdate or post['data']['DATE'] |xmldate }</updated>
+   <id>${ site.home_url }${ post['url'] |cleanurl }</id>
+   <content type="text">${ get_summary(post) | x }</content>
+ </entry>
+ % endfor
+</feed>
