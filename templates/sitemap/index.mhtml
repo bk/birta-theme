@@ -20,7 +20,7 @@ title = 'Veftré'
       jump_pages = []
       for it in MDCONTENT:
           pg = it['data']['page']
-          if not pg.do_not_render:
+          if not (pg.do_not_render or pg.no_sitemap):
               page_url = url(it['url'])
               stripped_url = cleanurl(it['url'])
               urlparts = [p for p in stripped_url.strip('/').split('/') if p != '']
