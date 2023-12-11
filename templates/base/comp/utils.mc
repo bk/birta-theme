@@ -48,12 +48,17 @@
 if not site.auto_title_h1 or (page and page.no_auto_title_h1):
     return ''
 subtitle = page.subtitle if page and page.subtitle else None
+subtitle_date = (page.pubdate or page.date) if page.date_as_subtitle else None
+date_comp = LOOKUP.get_template(page.date_comp) if page.date_comp and LOOKUP else None
 %>
   % if page and page.title and CONTENT and not CONTENT.startswith('<h1'):
       <% page._added_auto_title = page.title %>
       <h1 id="auto-${ page.title | slugify }">${ page.title }</h1>
       % if subtitle:
         <p class="subtitle">${ subtitle }</p>
+      % endif
+      % if subtitle_date:
+        <p class="subtitle date">${ date_comp.render(subtitle_date) if date_comp else date_short(subtitle_date) }
       % endif
   % endif
 </%def>
@@ -62,7 +67,7 @@ subtitle = page.subtitle if page and page.subtitle else None
   % if page and page.show_dates and (page.date or page.created_date or page.gitdate):
     <%
       # NOTE: sorting is by page.date, but created_date is more accurate if present
-      cdate = page.created_date or page.date
+      cdate = page.pubdate or page.created_date or page.date
       mdate = page.modified_date or MTIME  # NOTE: perhaps disregard MTIME later
       dfmt = '%-d.%-m. %Y kl. %-H:%M'
     %>
