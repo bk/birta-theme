@@ -117,3 +117,11 @@
   --button-text: var(--bg);
   --mark-text: var(--text);
   --code-bg: var(--accent-bg); }
+
+button,
+[role="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+a[role="button"] {
+  font-family: var(--sans-font); }
