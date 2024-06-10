@@ -48,7 +48,7 @@ tag_url = tag_page['url'] if tag_page else '/flokkar/' + slugify(tagname) + '/'
 <div class="round-teaser tag-teaser ${ css_class }">
   <a href="${ tag_url | cleanurl}">
     <span>${ tagname }<br><span class="smaller">Skoða flokkinn</span></span>
-    <img src="${ img }"?o=${ orig_img |u }" loading="lazy" alt="${ tagname |h}" width="680" height="680" class="borad-round">
+    <img src="${ img }?o=${ orig_img |u }" loading="lazy" alt="${ tagname |h}" width="680" height="680" class="borad-round">
   </a>
   <div class="intro">
     <h4 class="section mt-0 mb-1">Sýnishorn</h4>
